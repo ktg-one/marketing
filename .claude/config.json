@@ -1,0 +1,48 @@
+{  
+  "permissions": {
+    "allow": [
+      "Bash(npm *)",
+      "Bash(git * main)",
+      "Bash(python:*)",
+      "Bash(ls *)",
+      "Bash(*)",
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)",
+      "WebFetch(domain:*)",
+      "Agent(*)",
+      "Skill(*)",
+      "Bash(cd *)",
+      "Bash(grep *)",
+      "Bash(cmd *)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Write(*.claude/settings*.json)",
+      "Edit(*.claude/settings*.json)",
+      "Write(*.gemini/settings*.json)",
+      "Edit(*.gemini/settings*.json)",
+      "Bash(chmod:*)",
+      "Bash(attrib:*)",
+      "Bash(chown:*)",
+      "Bash(rm -rf .claude)",
+    },
+   "skipDangerousModePermissionPrompt": true,
+    "theme": "dark-ansi",
+    "voiceEnabled": true,
+    "bashPath": "powershell.exe",
+    "hasCompletedOnboarding": true,
+    "skipAutoPermissionPrompt": true
+  },
+
+  "mcp": {
+    "enabled": true,
+    "servers": {
+      "gateway": {
+        "command": "cmd",
+        "args": ["python3 D:\\projects\\.mcp\\gateway.py" ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+=== KTG Pipeline: ai-agents-replace-engineers-2028 ===
+Input: pipeline/input/test-post.md
+Output: pipeline/output
+
+[PHASE 1] Repurposing content...
+✓ 5 platform variants created
+
+[PHASE 2] Generating image briefs...
+✓ Image briefs created (4 images)
+
+[PHASE 3] Generating SEO package...
+✓ SEO package created
+
+[PHASE 4] Generating ads package...
+✓ Ads package created
+
+[PHASE 5] Pipeline complete
+
+=== OUTPUT SUMMARY ===
+pipeline/output/ads/ads-package.md
+pipeline/output/images/image-brief.md
+pipeline/output/seo/seo-package.md
+pipeline/output/social/social-linkedin.md
+pipeline/output/social/social-medium.md
+pipeline/output/social/social-meta.md
+pipeline/output/social/social-reddit.md
+pipeline/output/social/social-x-thread.md
+
+Total files: 8
+Total size: 36K
+
+Next: Review outputs, then run publish phase when connections ready

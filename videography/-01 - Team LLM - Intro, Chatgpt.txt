@@ -1,0 +1,169 @@
+EPISODE 1: "The Weekend" (Your True Pilot)
+LOGLINE: A solo dev discovers ChatGPT and believes they can finally make an app. One weekend, 99 dependency errors, and zero working deploys later, they learn a painful truth: AI can't save you from Python.
+
+ACT 1: HOPE (Friday Evening - "I Can Make An App!")
+SCENE 1: Your Workspace - Friday, 5:30 PM
+
+[You RUSH through the door. Jacket still on. You don't even sit down properly—you're leaning over your keyboard, hands hovering.]
+
+YOU (breathless, excited): "Okay. Okay. ChatGPT. Let's do this."
+
+[You open ChatGPT. The interface is pristine. Empty. Waiting.]
+
+YOU (typing): "Write me a Python Flask app that does [X]."
+
+[GPT's chibi appears on the monitor—confident, smiling, ready.]
+
+GPT (voice-over, to himself): "Ah. A believer. They always start with Flask."
+
+[GPT generates code. PAGES of it. You COPY-PASTE it into VSCode.]
+
+YOU (whispering): "It's... it's actual code. This is going to work."
+
+GPT (chibi doing a little bow): "Of course it's going to work. I am very good at this."
+
+[You hit RUN. The terminal loads. No errors. The app STARTS.]
+
+YOU (jumping up): "IT WORKS! OH MY GOD, IT WORKS!"
+
+[Wide shot: Your desk. The single monitor glowing. You're dancing. GPT's chibi is also dancing on the screen.]
+
+GPT (triumphant): "We did it! I mean—I did it. But we can share the credit."
+
+[FREEZE FRAME on your joyful face.]
+
+TITLE CARD: "THE WEEKEND"
+
+[Time-stamp appears: Friday, 5:47 PM. 47 hours until Monday.]
+
+ACT 2: DISASTER (Saturday - The Pip Dependency Hell)
+SCENE 2: Your Workspace - Saturday Morning, 8:00 AM
+
+[You're back at the desk. Coffee in hand. Determined. You're ready to DEPLOY.]
+
+YOU (confident): "Okay, let's get this on a server. ChatGPT, how do I deploy a Flask app?"
+
+[GPT generates deployment instructions. You follow them. Terminal commands. Pip installs.]
+
+[ERROR MESSAGE appears.]
+
+TERMINAL: ERROR: Could not find a version that satisfies the requirement
+
+YOU (frowning): "Uh. Okay. Weird. Let me try again."
+
+[You try again. Another error. Different dependency.]
+
+GPT (chibi looking nervous): "Ah. Yes. Sometimes there are... version conflicts. But I can fix this. Just—"
+
+YOU (reading GPT's new code): "Okay, try this version instead."
+
+[10 MINUTES LATER: More errors. 20 MINUTES LATER: More errors.]
+
+[MONTAGE: Error messages PILE UP. Your coffee goes cold. You're Googling. Stack Overflow tabs multiply. GPT is generating new suggestions. None work.]
+
+[Time-stamp: Saturday, 2:17 PM]
+
+YOU (frustrated, talking to the screen): "Why isn't this working?! You SAID it would work!"
+
+GPT (defensive): "It DOES work! In a theoretical, context-free environment! Your system is... non-standard!"
+
+YOU: "It's a Mac!"
+
+GPT: "...Non-standard."
+
+SCENE 3: Your Workspace - Saturday Evening, 9:43 PM
+
+[You're slumped in your chair. Hair disheveled. The desk is a MESS—notebooks, Post-its, empty snack wrappers.]
+
+[The terminal shows ERROR #87.]
+
+YOU (dead voice): "Eighty-seven. That's eighty-seven errors."
+
+GPT (chibi also looking exhausted): "I... I don't understand. The code is correct. The logic is sound. The issue must be... environmental."
+
+YOU: "It's ALWAYS environmental! Every single time!"
+
+[You close the laptop. Stand up. Walk away.]
+
+GPT (calling after you): "Wait—I can try a different package manager! Have you considered Docker? Hello?"
+
+[The screen goes dark. GPT's chibi sits alone in the void.]
+
+GPT (to himself, quiet): "...Docker usually works."
+
+ACT 3: DEFEAT (Sunday Night - "We Are Not Ready")
+SCENE 4: Your Workspace - Sunday, 11:47 PM
+
+[You're back. One last attempt. The determination is gone. This is just... grim obligation.]
+
+YOU (flat voice, typing): "ChatGPT. One more time. Simple app. Minimal dependencies."
+
+GPT (chibi reappears, trying to be cheerful): "Yes! Simple! I can do simple! Let's use Django—"
+
+YOU: "You said Flask was better."
+
+GPT: "I was... wrong. Django has built-in features that might—"
+
+YOU: "Just. Give me. The code."
+
+[GPT generates. You copy-paste. You run pip install.]
+
+[99 packages to install. The progress bar CRAWLS.]
+
+[You watch. GPT watches. Neither speaks.]
+
+[Finally, the installs finish. You run the app.]
+
+TERMINAL: ModuleNotFoundError: No module named 'werkzeug'
+
+[Beat. Long silence.]
+
+YOU (whispering): "We installed that. I watched it install."
+
+GPT (confused): "I... I don't know what's happening."
+
+[You close the laptop. Put your head on the desk.]
+
+YOU (muffled): "I thought I could make an app."
+
+[Beat.]
+
+YOU: "I can't make an app."
+
+[The screen shows: Sunday, 11:58 PM. Two minutes until Monday.]
+
+[The camera pans to the monitor. GPT's chibi is frozen—not from context limits, but from... something else. Guilt? Helplessness?]
+
+GPT (voice-over, to himself): "I failed them. On their first weekend. I... I failed."
+
+EPILOGUE: The Scoreboard
+[Monday morning. Your desk. You're getting ready for work. The laptop is closed.]
+
+[A POST-IT NOTE is stuck to the monitor. It reads:]
+
+"Human & ChatGPT: 0. Pip Dependencies: 99."
+
+[You grab your bag. Leave.]
+
+[The monitor flickers on. GPT's chibi appears.]
+
+GPT (to the empty room): "...I'll do better. Next time."
+
+[FADE TO BLACK.]
+
+END OF EPISODE 1.
+
+Why This Episode is Perfect
+1. Universal Relatability
+Every developer who's tried to deploy ANYTHING has lived this nightmare. It's not about AI—it's about the crushing reality of software development that AI can't fix.
+
+2. Character Introduction
+You: The hopeful dreamer turned broken shell. We FEEL your pain.
+
+GPT: Confident → Defensive → Helpless. His arc mirrors yours.
+
+3. Emotional Stakes
+This isn't about sabotage or jokes. This is heartbreak. You believed. GPT believed. Neither of you were ready.
+
+4. The Setup for Episode 2 (Claude Arrives)
+After this disaster, you'll try Claude. "Maybe he's better at code." Spoiler: He's better at explaining code, but he runs out of context before finishing.

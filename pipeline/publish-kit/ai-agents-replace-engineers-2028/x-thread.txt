@@ -1,0 +1,87 @@
+HOW TO POST: Copy each numbered post separately. Wait 2-3 min between posts.
+IMAGE: hero-x.png (1200x600) — attach to post 1
+
+---
+
+POST 1/8:
+The software engineer as we know it is dying.
+
+Not because AI can't code.
+Because AI can code *better*, *faster*, and *cheaper*.
+
+---
+
+POST 2/8:
+At top startups, AI agents already write 40% of production code.
+
+Not tests. Not docs.
+Production code that ships to real users.
+
+---
+
+POST 3/8:
+The bottleneck shifted.
+
+It was never typing speed.
+It was:
+• Understanding requirements
+• Making architectural decisions
+• Debugging complex systems
+
+AI is eating #1 and #3. #2 is next.
+
+---
+
+POST 4/8:
+The "AI whisperer" emerges.
+
+Survivors won't be the best coders.
+They'll be the best at:
+• Specification (precision)
+• Verification (catching AI mistakes)
+• Integration (combining pieces)
+
+---
+
+POST 5/8:
+Three skills to survive:
+
+1. Systems thinking — see the whole
+2. AI orchestration — chain agents
+3. Domain expertise — deep knowledge AI can't fake
+
+---
+
+POST 6/8:
+By 2028, "software engineer" = "person who manages AI agents."
+
+Pure coders: automated away.
+Orchestrators: thrive.
+
+---
+
+POST 7/8:
+This isn't speculative.
+
+It's already happening at:
+• Cursor (AI-native IDE)
+• Claude Code (agentic coding)
+• Kimi CLI (context-aware dev)
+• Gemini CLI (multi-agent workflows)
+
+---
+
+POST 8/8:
+The question isn't whether.
+It's whether you're on the right side of it.
+
+Subscribe: ktg.one
+
+#AI #SoftwareEngineering #FutureOfWork
+
+---
+TIPS:
+- Post 1 gets the image
+- Reply to each post to create thread
+- Best time: Tue-Thu 9am, 12pm, or 3pm
+- Pin post 1 to profile for 24h

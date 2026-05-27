@@ -1,0 +1,37 @@
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm *)",
+      "Bash(git * main)",
+      "Bash(python:*)",
+      "Bash(ls *)",
+      "Bash(*)",
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)",
+      "WebFetch(domain:*)",
+      "Agent(*)",
+      "Skill(*)",
+      "Bash(cd *)",
+      "Bash(grep *)",
+      "Bash(cmd *)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Write(*.claude/settings*.json)",
+      "Edit(*.claude/settings*.json)",
+      "Write(*.gemini/settings*.json)",
+      "Edit(*.gemini/settings*.json)",
+      "Bash(chmod:*)",
+      "Bash(attrib:*)",
+      "Bash(chown:*)",
+      "Bash(rm -rf .claude)",
+      "Bash(rm -rf .gemini)"
+    ],
+    "defaultMode": "auto",
+    "additionalDirectories": [
+      "~/knowledge2026/",
+      "/d/projects/sites",
+      "/d/projects/.mcp",
+      "~/knowledge2026/06-projects-code/goodai-mate",
+      "~/knowledge2026/06-projects-code"

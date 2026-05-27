@@ -1,0 +1,31 @@
+[2m2026-05-26T13:42:53.801441Z[0m [32m INFO[0m [2miii_console[0m[2m:[0m Starting iii-console on 127.0.0.1:3115
+[2m2026-05-26T13:42:53.802336Z[0m [32m INFO[0m [2miii_console[0m[2m:[0m Connecting to engine at 127.0.0.1:3111 (WS: 3112)
+[2m2026-05-26T13:42:53.803173Z[0m [32m INFO[0m [2miii_console[0m[2m:[0m OpenTelemetry enabled (service: iii-console)
+[2m2026-05-26T13:42:53.803982Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/status -> engine::console::status
+[2m2026-05-26T13:42:53.804808Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/health -> engine::console::health
+[2m2026-05-26T13:42:53.805091Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/functions -> engine::console::functions
+[2m2026-05-26T13:42:53.805211Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/triggers -> engine::console::triggers
+[2m2026-05-26T13:42:53.805362Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/trigger-types -> engine::console::trigger_types
+[2m2026-05-26T13:42:53.805484Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/workers -> engine::console::workers
+[2m2026-05-26T13:42:53.805610Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/alerts -> engine::console::alerts_list
+[2m2026-05-26T13:42:53.805671Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/sampling/rules -> engine::console::sampling_rules
+[2m2026-05-26T13:42:53.805747Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/otel/logs -> engine::console::otel_logs_list
+[2m2026-05-26T13:42:53.805857Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/otel/logs/clear -> engine::console::otel_logs_clear
+[2m2026-05-26T13:42:53.805904Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/otel/traces -> engine::console::otel_traces_list
+[2m2026-05-26T13:42:53.805990Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/otel/traces/clear -> engine::console::otel_traces_clear
+[2m2026-05-26T13:42:53.806097Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/otel/traces/tree -> engine::console::otel_traces_tree
+[2m2026-05-26T13:42:53.806149Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/metrics/detailed -> engine::console::metrics_detailed
+[2m2026-05-26T13:42:53.806202Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/rollups -> engine::console::rollups_list
+[2m2026-05-26T13:42:53.806254Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/states/groups -> engine::console::state_groups_list
+[2m2026-05-26T13:42:53.806544Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/states/group -> engine::console::state_group_items
+[2m2026-05-26T13:42:53.806690Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/states/:group/item -> engine::console::state_item_set
+[2m2026-05-26T13:42:53.806934Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/states/:group/item/:key -> engine::console::state_item_delete
+[2m2026-05-26T13:42:53.807094Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/streams/list -> engine::console::streams_list
+[2m2026-05-26T13:42:53.807254Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/flows/config/:flow_id -> engine::console::flow_config_get
+[2m2026-05-26T13:42:53.807355Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/flows/config/:flow_id -> engine::console::flow_config_save
+[2m2026-05-26T13:42:53.807436Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/cron/trigger -> engine::console::cron_trigger
+[2m2026-05-26T13:42:53.807483Z[0m [32m INFO[0m [2miii_console::bridge::triggers[0m[2m:[0m Successfully registered API trigger: _console/invoke -> engine::console::invoke
+[2m2026-05-26T13:42:53.807724Z[0m [32m INFO[0m [2mopentelemetry[0m[2m:[0m  [3mname[0m[2m=[0m"TracerProvider.GlobalSet" Global tracer provider is set. Traces can now be created using global::tracer() or global::tracer_with_scope().
+[2m2026-05-26T13:42:53.807913Z[0m [32m INFO[0m [2mopentelemetry[0m[2m:[0m  [3mname[0m[2m=[0m"MeterProvider.GlobalSet" Global meter provider is set. Meters can now be created using global::meter() or global::meter_with_scope().
+[2m2026-05-26T13:42:53.808160Z[0m [32m INFO[0m [2miii_sdk::telemetry[0m[2m:[0m OpenTelemetry initialized [3mservice[0m[2m=[0miii-console
+[2m2026-05-26T13:42:53.808374Z[0m [32m INFO[0m [2miii_console::server[0m[2m:[0m Console available at http://127.0.0.1:3115

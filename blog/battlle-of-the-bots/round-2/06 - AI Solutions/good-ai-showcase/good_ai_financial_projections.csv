@@ -1,0 +1,13 @@
+Metric,Year 1,Year 2,Year 3
+Total Revenue,300000,900000,2100000
+Revenue Growth %,,200,133
+EBITDA,12500,175000,625000
+EBITDA Margin %,4.2,19.4,29.8
+Research Division Revenue,150000,330000,650000
+Technology Division Revenue,70000,220000,600000
+Creative Division Revenue,80000,350000,850000
+Cost of Goods Sold,200000,450000,950000
+Operational Expenses,150000,300000,550000
+Grant Funding (Probability Weighted),62500,25000,25000
+Net Cash Flow,12500,175000,625000
+Break-even Month,Month 8,Profitable,Profitable

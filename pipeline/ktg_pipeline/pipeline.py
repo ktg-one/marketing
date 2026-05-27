@@ -1,0 +1,376 @@
+"""Main pipeline orchestrator."""
+
+import json
+import re
+from pathlib import Path
+from typing import Dict, Any, Optional
+from datetime import datetime
+
+from .config import Config
+from .providers.ollama import OllamaProvider
+from .providers.google import GoogleProvider
+from .providers.lmstudio import LMStudioProvider
+from .providers.openrouter import OpenRouterProvider
+
+
+class ContentPipeline:
+    """KTG Content Pipeline — reusable, AI-powered."""
+    
+    def __init__(self, config: Config = None):
+        self.config = config or Config()
+        self.llm = self._init_llm()
+    
+    def _init_llm(self):
+        """Initialize LLM provider based on config."""
+        provider = self.config.llm_provider
+        llm_config = self.config.llm_config
+        
+        if provider == 'ollama':
+            return OllamaProvider(llm_config)
+        elif provider == 'lmstudio':
+            return LMStudioProvider(llm_config)
+        elif provider == 'google':
+            return GoogleProvider(llm_config)
+        elif provider == 'openrouter':
+            return OpenRouterProvider(llm_config)
+        else:
+            raise ValueError(f"Unknown LLM provider: {provider}")
+    
+    def parse_input(self, input_path: str) -> Dict[str, Any]:
+        """Parse blog post with YAML frontmatter."""
+        with open(input_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Extract frontmatter
+        frontmatter = {}
+        body = content
+        
+        if content.startswith('---'):
+            parts = content.split('---', 2)
+            if len(parts) >= 3:
+                import yaml
+                frontmatter = yaml.safe_load(parts[1])
+                body = parts[2].strip()
+        
+        # Extract slug
+        slug = frontmatter.get('slug', Path(input_path).stem)
+        
+        return {
+            'frontmatter': frontmatter,
+            'body': body,
+            'slug': slug,
+            'title': frontmatter.get('title', 'Untitled'),
+            'topic': frontmatter.get('topic', ''),
+            'tone': frontmatter.get('tone', 'professional'),
+            'audience': frontmatter.get('target_audience', 'general'),
+            'call_to_action': frontmatter.get('call_to_action', ''),
+            'key_points': frontmatter.get('key_points', [])
+        }
+    
+    def run(self, input_path: str, output_dir: str = None) -> Dict[str, Any]:
+        """Run full pipeline."""
+        # Parse input
+        post = self.parse_input(input_path)
+        slug = post['slug']
+        
+        # Setup output directories
+        if output_dir is None:
+            output_dir = f"pipeline/output/{slug}"
+        
+        out_path = Path(output_dir)
+        out_path.mkdir(parents=True, exist_ok=True)
+        
+        results = {
+            'slug': slug,
+            'input': input_path,
+            'output_dir': str(out_path),
+            'platforms': {},
+            'seo': None,
+            'ads': None,
+            'images': {}
+        }
+        
+        print(f"=== KTG Pipeline: {slug} ===")
+        print(f"LLM Provider: {self.config.llm_provider}")
+        print(f"Model: {self.config.llm_config.get('model', 'unknown')}")
+        print()
+        
+        # Generate platform variants
+        platforms = self.config.platforms
+        
+        if platforms.get('medium', {}).get('enabled', True):
+            print("[1/8] Generating Medium variant...")
+            results['platforms']['medium'] = self._repurpose_medium(post, out_path)
+        
+        if platforms.get('reddit', {}).get('enabled', True):
+            print("[2/8] Generating Reddit variant...")
+            results['platforms']['reddit'] = self._repurpose_reddit(post, out_path)
+        
+        if platforms.get('x', {}).get('enabled', True):
+            print("[3/8] Generating X thread...")
+            results['platforms']['x'] = self._repurpose_x(post, out_path)
+        
+        if platforms.get('linkedin', {}).get('enabled', True):
+            print("[4/8] Generating LinkedIn variant...")
+            results['platforms']['linkedin'] = self._repurpose_linkedin(post, out_path)
+        
+        if platforms.get('meta', {}).get('enabled', True):
+            print("[5/8] Generating Meta variant...")
+            results['platforms']['meta'] = self._repurpose_meta(post, out_path)
+        
+        # Generate SEO package
+        print("[6/8] Generating SEO package...")
+        results['seo'] = self._generate_seo(post, out_path)
+        
+        # Generate ads package
+        print("[7/8] Generating ads package...")
+        results['ads'] = self._generate_ads(post, out_path)
+        
+        # Generate image prompts
+        print("[8/8] Generating image prompts...")
+        results['images'] = self._generate_image_prompts(post, out_path)
+        
+        # Save manifest
+        manifest_path = out_path / 'manifest.json'
+        with open(manifest_path, 'w') as f:
+            json.dump(results, f, indent=2)
+        
+        print()
+        print(f"=== Complete ===")
+        print(f"Output: {out_path}")
+        print(f"Files: {len(list(out_path.glob('*.md')))}")
+        
+        return results
+    
+    def _repurpose_medium(self, post: Dict, out_path: Path) -> str:
+        """Repurpose for Medium."""
+        prompt = f"""Repurpose this blog post for Medium.
+
+Original Title: {post['title']}
+Content:
+{post['body'][:2000]}...
+
+Requirements:
+- Full article format
+- Clean markdown
+- Professional tone
+- Keep key points but expand slightly
+- Add Medium-appropriate formatting
+- End with: "Originally published on [KTG](https://ktg.one)"
+
+Output only the repurposed article, no explanations."""
+        
+        content = self.llm.generate(prompt)
+        
+        output_file = out_path / 'medium.md'
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(f"---\nplatform: medium\nsource: {post['slug']}\n---\n\n")
+            f.write(content)
+        
+        return str(output_file)
+    
+    def _repurpose_reddit(self, post: Dict, out_path: Path) -> str:
+        """Repurpose for Reddit."""
+        prompt = f"""Repurpose this blog post for Reddit discussion.
+
+Title: {post['title']}
+Key Points:
+{chr(10).join(f"- {p}" for p in post['key_points'])}
+
+Requirements:
+- Conversational, not promotional
+- Start with "I know this sounds like [hook] but..."
+- Present key insight as a question/discussion
+- End with engaging question for comments
+- Keep it under 2000 characters
+- No emojis, Reddit doesn't like them
+
+Output only the Reddit post text."""
+        
+        content = self.llm.generate(prompt)
+        
+        output_file = out_path / 'reddit.md'
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(f"---\nplatform: reddit\nsource: {post['slug']}\n---\n\n")
+            f.write(content)
+            if post['call_to_action']:
+                f.write(f"\n\n{post['call_to_action']}")
+        
+        return str(output_file)
+    
+    def _repurpose_x(self, post: Dict, out_path: Path) -> str:
+        """Repurpose for X/Twitter thread."""
+        prompt = f"""Create an X/Twitter thread from this blog post.
+
+Title: {post['title']}
+Key Points:
+{chr(10).join(f"- {p}" for p in post['key_points'])}
+
+Requirements:
+- 8 posts in the thread
+- Each post under 280 characters
+- Numbered 1/, 2/, etc.
+- Post 1: Hook (attention-grabbing)
+- Posts 2-5: Key insights
+- Post 6-7: Evidence/examples
+- Post 8: CTA + hashtags
+- Each post should standalone (people see it in isolation)
+
+Output format:
+1/ [text]
+2/ [text]
+etc."""
+        
+        content = self.llm.generate(prompt)
+        
+        output_file = out_path / 'x-thread.md'
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(f"---\nplatform: x\nsource: {post['slug']}\ntype: thread\n---\n\n")
+            f.write(content)
+        
+        return str(output_file)
+    
+    def _repurpose_linkedin(self, post: Dict, out_path: Path) -> str:
+        """Repurpose for LinkedIn."""
+        prompt = f"""Repurpose this blog post for LinkedIn professional article.
+
+Title: {post['title']}
+Key Points:
+{chr(10).join(f"- {p}" for p in post['key_points'])}
+
+Requirements:
+- Professional, thought leadership tone
+- Use bold headers for sections
+- Bullet points for readability
+- No emojis (LinkedIn professional)
+- Structure: Hook → Data → Analysis → Framework → CTA
+- 1500-2000 characters
+- End with hashtags
+
+Output only the LinkedIn post text."""
+        
+        content = self.llm.generate(prompt)
+        
+        output_file = out_path / 'linkedin.md'
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(f"---\nplatform: linkedin\nsource: {post['slug']}\n---\n\n")
+            f.write(content)
+        
+        return str(output_file)
+    
+    def _repurpose_meta(self, post: Dict, out_path: Path) -> str:
+        """Repurpose for Meta/Facebook."""
+        prompt = f"""Repurpose this blog post for Meta/Facebook casual post.
+
+Title: {post['title']}
+Key Points:
+{chr(10).join(f"- {p}" for p in post['key_points'])}
+
+Requirements:
+- Casual, friendly tone
+- Heavy emoji use (✅ 🚨 👇)
+- Short paragraphs
+- Numbered list with emoji
+- Question at end to drive engagement
+- Under 1500 characters
+- Image required (note this)
+
+Output only the Facebook post text."""
+        
+        content = self.llm.generate(prompt)
+        
+        output_file = out_path / 'meta.md'
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(f"---\nplatform: meta\nsource: {post['slug']}\n---\n\n")
+            f.write(content)
+        
+        return str(output_file)
+    
+    def _generate_seo(self, post: Dict, out_path: Path) -> str:
+        """Generate SEO package."""
+        prompt = f"""Generate SEO metadata for this blog post.
+
+Title: {post['title']}
+Topic: {post['topic']}
+Key Points: {', '.join(post['key_points'])}
+
+Generate:
+1. Title tag (under 60 chars)
+2. Meta description (under 160 chars)
+3. 5 target keywords with priority
+4. Open Graph title/description
+5. Twitter Card title/description
+6. Schema.org JSON-LD (Article type)
+
+Output as structured markdown."""
+        
+        content = self.llm.generate(prompt)
+        
+        output_file = out_path / 'seo.md'
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(f"---\ntype: seo\nsource: {post['slug']}\n---\n\n")
+            f.write(content)
+        
+        return str(output_file)
+    
+    def _generate_ads(self, post: Dict, out_path: Path) -> str:
+        """Generate ads package."""
+        prompt = f"""Generate ad copy for this blog post.
+
+Title: {post['title']}
+Key Points: {', '.join(post['key_points'])}
+Audience: {post['audience']}
+
+Generate for:
+1. Google Search Ads (3 headlines, 2 descriptions)
+2. Meta Ads (primary text, headline, CTA)
+3. LinkedIn Ads (sponsored content text)
+
+Output as structured markdown."""
+        
+        content = self.llm.generate(prompt)
+        
+        output_file = out_path / 'ads.md'
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(f"---\ntype: ads\nsource: {post['slug']}\n---\n\n")
+            f.write(content)
+        
+        return str(output_file)
+    
+    def _generate_image_prompts(self, post: Dict, out_path: Path) -> Dict[str, str]:
+        """Generate image generation prompts."""
+        images = {}
+        
+        # Hero image
+        prompt = f"""Create a detailed image generation prompt for this blog post header.
+
+Title: {post['title']}
+Topic: {post['topic']}
+Tone: {post['tone']}
+
+Requirements:
+- Aspect ratio 16:9
+- Bold editorial style
+- Dark background with neon accents
+- Abstract/tech aesthetic
+- Include specific colors, composition, mood
+
+Output only the prompt text (for image generator)."""
+        
+        hero_prompt = self.llm.generate(prompt)
+        images['hero'] = hero_prompt
+        
+        # Save all prompts
+        output_file = out_path / 'image-prompts.md'
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(f"---\ntype: image-prompts\nsource: {post['slug']}\n---\n\n")
+            f.write("## Hero Image (16:9)\n\n")
+            f.write(hero_prompt)
+            f.write("\n\n## LinkedIn Image (1.91:1)\n\n")
+            f.write("[Use similar style, professional, data-focused]\n")
+            f.write("\n\n## X Image (2:1)\n\n")
+            f.write("[Bold, high contrast, scroll-stopping]\n")
+            f.write("\n\n## Square Image (1:1)\n\n")
+            f.write("[Icons, educational, carousel-friendly]\n")
+        
+        return images

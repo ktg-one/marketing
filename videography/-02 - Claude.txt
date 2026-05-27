@@ -1,0 +1,51 @@
+The Claude Follow-Up (Episode 2 Teaser)
+[You discover Claude. "Anthropic says he's better at coding."]
+
+[Claude appears—thoughtful, verbose, genuinely trying to help.]
+
+YOU: "Can you help me deploy this app?"
+
+CLAUDE: "Of course! Let me walk you through the entire deployment pipeline, considering security best practices, scalability concerns, and—"
+
+[CONTEXT WINDOW WARNING appears: "4,000 tokens remaining."]
+
+CLAUDE (talking faster): "—and furthermore, we should implement a CI/CD workflow using GitHub Actions, configured with—"
+
+[CONTEXT WINDOW: "500 tokens remaining."]
+
+CLAUDE (panicking): "Wait—I haven't finished the deployment steps—Docker configuration requires—"
+
+[FREEZE. "CONTEXT WINDOW EXCEEDED."]
+
+YOU (staring): "You've GOT to be kidding me."
+
+[Claude's frozen chibi, mid-sentence, one hand raised.]
+
+[Cut to you, head on desk again.]
+
+YOU: "Why do they all break before they finish?"
+
+The MCP Moment (Episode 4 - "Claude's Redemption")
+[Claude gets MCP. He's SO EXCITED.]
+
+CLAUDE: "I can USE tools now! Not just describe them! I can execute commands!"
+
+YOU (cautiously hopeful): "Okay. Deploy this app."
+
+CLAUDE: "Watch this."
+
+[Claude starts executing actual terminal commands. It's WORKING. Files are moving. Servers are configuring.]
+
+YOU (leaning forward): "Is this... is this actually happening?"
+
+CLAUDE: "It is! I can finally—"
+
+[CONTEXT WINDOW WARNING.]
+
+CLAUDE: "No. No no no. Not now. NOT NOW."
+
+[FREEZE.]
+
+YOU (laughing, but it's hollow): "Of course."
+
+CLAUDE (frozen, one pixel away from success): "...I was so close."

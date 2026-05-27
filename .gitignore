@@ -1,0 +1,10 @@
+﻿.venv/
+.raw/
+data/
+.understand-anything/
+*.dll
+*.pyd
+*.png
+in-memoria.db
+Dpackagesnpm/
+__pycache__/

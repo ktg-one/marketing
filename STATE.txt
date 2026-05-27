@@ -1,0 +1,50 @@
+KTG CONTENT PIPELINE — STATE
+============================
+
+WORKING NOW (Production)
+------------------------
+• pipeline/run.sh                    → Template-based generator (2 sec)
+• pipeline/publish-kit/*/            → 8 copy-paste ready files
+• Image prompts (Google AI Studio)   → Ready to use
+
+UNTESTED (Framework Built)
+--------------------------
+• pipeline/ktg_pipeline/             → Python AI framework (~2k lines)
+• 4 LLM providers (Ollama, Google, LMStudio, OpenRouter)
+• Needs: Real LLM test, prompt fixes, error handling
+
+IMPOSSIBLE
+----------
+• Auto-post X/Meta/Medium (APIs blocked)
+• 11-agent swarm (overengineering)
+
+COST
+----
+• Bash version: $0
+• Python version (local): $0 + your electricity
+• Python version (API): ~$0.02-0.05/post
+
+========================================
+
+NEXT STEPS (Choose One)
+=======================
+
+[A] SHIP NOW (30 min, $0)
+    1. bash pipeline/run.sh input/my-post.md
+    2. Generate images via Google AI Studio (prompts provided)
+    3. Copy-paste to 5 platforms
+
+[B] TEST PYTHON (1-2 hrs, $0)
+    1. pip install pyyaml requests
+    2. ollama pull llama3 && ollama serve
+    3. python pipeline/run.py input/my-post.md --provider ollama
+    4. Fix what breaks
+
+[C] WIRE YOUR 5070 (2-4 hrs, $0)
+    1. Start ComfyUI/SD with API enabled
+    2. Add image generation to pipeline
+    3. Test end-to-end
+
+========================================
+
+VERDICT: Use [A] now. [B] and [C] are polish for later.

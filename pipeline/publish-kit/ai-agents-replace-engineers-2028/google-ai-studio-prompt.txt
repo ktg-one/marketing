@@ -1,0 +1,39 @@
+GOOGLE AI STUDIO IMAGE GENERATION
+Paste this into Google AI Studio (aistudio.google.com)
+Select "Gemini 2.0 Flash Experimental" or image generation model
+
+---
+
+PROMPT:
+
+Create a bold editorial illustration for a blog post about AI replacing software engineers by 2028.
+
+STYLE: Dark background with neon accent lines, abstract digital art, futuristic tech aesthetic
+
+COMPOSITION: 
+- Silhouette of a software engineer at a laptop on the left side
+- The silhouette is fading/transforming into circuit board patterns and glowing neural network nodes
+- Emerging from the right side: abstract AI agent nodes, geometric shapes, bright cyan glow
+- Transition zone in the middle showing the transformation
+
+COLORS:
+- Deep navy background (#0a1628)
+- Electric cyan accents (#00d4ff) 
+- Warm coral highlights (#ff6b6b)
+- High contrast, dramatic lighting
+
+TEXT ELEMENTS (if supported):
+- Large "2028" in monospace font
+- Subtitle "The End of Engineering?" in smaller sans-serif
+
+MOOD: Provocative, forward-looking, slightly unsettling but professional
+ASPECT RATIO: 16:9 (1200x675)
+
+KEYWORDS: AI, software engineer, transformation, automation, futuristic, dark mode, neon, tech
+
+---
+
+SETTINGS:
+- Aspect ratio: 16:9
+- Style: Digital art / Illustration
+- Negative prompt: cartoon, anime, photorealistic human faces, cluttered, text-heavy

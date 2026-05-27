@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WA's $146B AI Crisis - An Interactive Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+
+        .hero-section {
+            background: radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.15), transparent 70%), #0a0a0a;
+        }
+
+        .pulse-red {
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+
+        .text-glow-red {
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+        }
+
+        .text-glow-amber {
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+        }
+
+        .text-glow-green {
+            text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+        }
+
+        .card-bg {
+            background-color: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-fill {
+            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .reveal-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding: 0 1.5rem;
+        }
+
+        .reveal-card.active .reveal-content {
+            max-height: 500px; /* Adjust as needed */
+            padding: 1.5rem;
+        }
+        
+        .reveal-card.active .expand-icon {
+            transform: rotate(45deg);
+        }
+        
+        .expand-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        /* Animation for elements scrolling into view */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Sticky Alert Banner -->
+    <div class="sticky top-0 z-50 bg-red-800/80 backdrop-blur-sm text-white py-2 px-4 text-center text-sm font-semibold flex items-center justify-center gap-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-ping absolute left-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        <span>BREAKING: WA SMEs are falling dangerously behind in AI adoption</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-ping absolute right-4 hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="bg-black/30 backdrop-blur-lg sticky top-10 z-40">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-white">WA AI Report</a>
+            <div class="hidden md:flex space-x-6 text-sm">
+                <a href="#reality" class="text-gray-300 hover:text-white transition">The Reality</a>
+                <a href="#comparison" class="text-gray-300 hover:text-white transition">The Gap</a>
+                <a href="#plateau" class="text-gray-300 hover:text-white transition">The Plateau</a>
+                <a href="#solution" class="text-gray-300 hover:text-white transition">The Solution</a>
+            </div>
+            <a href="#cta" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition text-sm">Take Action</a>
+        </div>
+    </nav>
+
+    <!-- Main Header -->
+    <header class="hero-section relative overflow-hidden py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center gap-4 mb-4">
+                <span class="border border-red-500 bg-red-900/50 text-red-300 text-xs font-semibold px-3 py-1 rounded-full pulse-red">CRISIS ALERT</span>
+                <span class="border border-amber-500 bg-amber-900/50 text-amber-300 text-xs font-semibold px-3 py-1 rounded-full pulse-red" style="animation-delay: 0.5s">URGENT DATA</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white leading-tight mb-4 text-glow-red">WA's $146B AI Crisis</h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Why 76% of SMEs Are Stuck in the Digital Stone Age, and What the Shocking Data Means for Your Business.</p>
+            <div class="mt-12 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+                <div class="card-bg p-4 rounded-lg">
+                    <span class="text-4xl font-bold text-red-500 text-glow-red">29%</span>
+                    <span class="block text-sm text-gray-400 mt-1">WA AI Adoption</span>
+                </div>
+                <div class="card-bg p-4 rounded-lg">
+                    <span class="text-4xl font-bold text-green-500 text-glow-green">41%</span>
+                    <span class="block text-sm text-gray-400 mt-1">National Average</span>
+                </div>
+                <div class="card-bg p-4 rounded-lg">
+                    <span class="text-4xl font-bold text-amber-500 text-glow-amber">12pt</span>
+                    <span class="block text-sm text-gray-400 mt-1">Gap Behind Nation</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content sections -->
+    <main class="container mx-auto px-6 py-16 md:py-24 space-y-24">
+
+        <!-- Interactive Statistics Dashboard -->
+        <section id="reality" class="fade-in-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The Shocking Reality in Numbers</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Stat Card 1 -->
+                <div class="card-bg rounded-xl p-6 text-center border-t-4 border-red-600">
+                    <div class="text-6xl mb-2">📉</div>
+                    <div class="text-6xl font-black text-red-500" data-target="29">0</div>
+                    <div class="text-lg font-semibold text-white">WA SME AI Adoption</div>
+                    <div class="text-sm text-gray-400">vs 41% National Average</div>
+                </div>
+                <!-- Stat Card 2 -->
+                <div class="card-bg rounded-xl p-6 text-center border-t-4 border-red-800">
+                    <div class="text-6xl mb-2">🔥</div>
+                    <div class="text-6xl font-black text-red-400"><span data-target="21">0</span>pt</div>
+                    <div class="text-lg font-semibold text-white">Metro-Regional Gap</div>
+                    <div class="text-sm text-gray-400">Worst in Australia</div>
+                </div>
+                <!-- Stat Card 3 -->
+                <div class="card-bg rounded-xl p-6 text-center border-t-4 border-amber-500">
+                    <div class="text-6xl mb-2">🚫</div>
+                    <div class="text-6xl font-black text-amber-400"><span data-target="76">0</span>%</div>
+                    <div class="text-lg font-semibold text-white">Have NO AI Strategy</div>
+                    <div class="text-sm text-gray-400">Completely Flying Blind</div>
+                </div>
+                <!-- Stat Card 4 -->
+                 <div class="card-bg rounded-xl p-6 text-center border-t-4 border-sky-500">
+                    <div class="text-6xl mb-2">💰</div>
+                    <div class="text-6xl font-black text-sky-400"><span data-target="25">0</span>%</div>
+                    <div class="text-lg font-semibold text-white">Using AI for Growth</div>
+                    <div class="text-sm text-gray-400">vs 57% Just for Cost-Cutting</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Visualizer -->
+        <section id="comparison" class="fade-in-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">WA vs The Nation: A Devastating Divide</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card-bg p-6 rounded-lg">
+                    <h3 class="font-bold text-xl mb-6 text-center">Metro Area Adoption</h3>
+                    <div class="space-y-4">
+                        <div class="bar-container">
+                            <div class="flex justify-between mb-1 text-sm"><span>NSW Metro</span><span>34%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-4"><div class="progress-fill bg-green-500 h-4 rounded-full" data-width="34" style="width: 0%;"></div></div>
+                        </div>
+                        <div class="bar-container">
+                            <div class="flex justify-between mb-1 text-sm"><span>WA Metro</span><span>32%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-4"><div class="progress-fill bg-amber-500 h-4 rounded-full" data-width="32" style="width: 0%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-bg p-6 rounded-lg border-2 border-red-600 shadow-lg shadow-red-600/20">
+                    <h3 class="font-bold text-xl mb-6 text-center">Regional Area Adoption</h3>
+                     <div class="space-y-4">
+                        <div class="bar-container">
+                            <div class="flex justify-between mb-1 text-sm"><span>NSW Regional</span><span>18%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-4"><div class="progress-fill bg-green-500 h-4 rounded-full" data-width="18" style="width: 0%;"></div></div>
+                        </div>
+                        <div class="bar-container">
+                            <div class="flex justify-between mb-1 text-sm"><span>WA Regional</span><span class="text-red-400 font-bold">11%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-4"><div class="progress-fill bg-red-600 h-4 rounded-full" data-width="11" style="width: 0%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="mt-8 text-center card-bg p-4 rounded-lg">
+                <p><strong>The Gap:</strong> NSW has a 16-point metro-regional divide. WA has a catastrophic <strong class="text-red-500 text-xl">21-point divide</strong>.</p>
+            </div>
+        </section>
+
+        <!-- Strategic Plateau Section -->
+        <section id="plateau" class="fade-in-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The Strategic Plateau: Where WA SMEs Are Stuck</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-bg p-6 rounded-lg text-center border-b-4 border-amber-600">
+                    <div class="text-6xl mb-4">🤖</div>
+                    <h3 class="text-xl font-bold">Basic AI</h3>
+                    <p class="text-gray-400 text-sm mb-4">ChatGPT, simple automation</p>
+                    <div class="text-7xl font-black text-amber-500" data-target="92">0%</div>
+                    <div class="text-amber-300 font-semibold mt-2">Most WA SMEs are stuck here</div>
+                </div>
+                <div class="card-bg p-6 rounded-lg text-center border-b-4 border-green-600">
+                    <div class="text-6xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold">Strategic AI</h3>
+                    <p class="text-gray-400 text-sm mb-4">Industry-specific solutions</p>
+                    <div class="text-7xl font-black text-green-500" data-target="19">0%</div>
+                    <div class="text-green-300 font-semibold mt-2">Massive opportunity gap</div>
+                </div>
+                <div class="card-bg p-6 rounded-lg text-center border-b-4 border-sky-600">
+                    <div class="text-6xl mb-4">🚀</div>
+                    <h3 class="text-xl font-bold">Transformational AI</h3>
+                    <p class="text-gray-400 text-sm mb-4">Business model innovation</p>
+                    <div class="text-7xl font-black text-sky-500" data-target="5">0%</div>
+                    <div class="text-sky-300 font-semibold mt-2">The elite leading the pack</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accordion Reveal Section -->
+        <section id="solution" class="fade-in-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The Truth Behind the Numbers</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="reveal-card card-bg rounded-lg">
+                    <div class="reveal-header flex justify-between items-center p-6 cursor-pointer">
+                        <h3 class="font-bold text-lg">💸 The $146 Billion Opportunity WA Is Missing</h3>
+                        <div class="expand-icon text-2xl font-light">+</div>
+                    </div>
+                    <div class="reveal-content text-gray-300">
+                        <p>Goldman Sachs estimates AI could add $146 billion to regional Australia's GDP. WA's 12-point lag behind the national average means the state is missing out on billions in potential economic growth, productivity gains, and innovation.</p>
+                    </div>
+                </div>
+                 <div class="reveal-card card-bg rounded-lg">
+                    <div class="reveal-header flex justify-between items-center p-6 cursor-pointer">
+                        <h3 class="font-bold text-lg">⚡ Why Your Competitors Are Already Ahead</h3>
+                        <div class="expand-icon text-2xl font-light">+</div>
+                    </div>
+                    <div class="reveal-content text-gray-300">
+                        <p>While 92% of WA SMEs are dabbling with basic tools like ChatGPT, only 19% are investing in strategic AI systems tailored to their industry. Meanwhile, 41% of their national competitors are adopting comprehensive AI strategies, creating a widening competitive gap.</p>
+                    </div>
+                </div>
+                 <div class="reveal-card card-bg rounded-lg">
+                    <div class="reveal-header flex justify-between items-center p-6 cursor-pointer">
+                        <h3 class="font-bold text-lg">🏭 The 3 Industries About to Be Disrupted</h3>
+                        <div class="expand-icon text-2xl font-light">+</div>
+                    </div>
+                    <div class="reveal-content text-gray-300">
+                        <p><strong>Mining/METS:</strong> Mandates for AI integration are coming for efficiency and safety. <br><strong>Agriculture:</strong> Connectivity is a handbrake, but on-farm AI for optimization is inevitable. <br><strong>Construction:</strong> A risk-averse culture is delaying adoption, but AI for project management and safety will soon be standard.</p>
+                    </div>
+                </div>
+                 <div class="reveal-card card-bg rounded-lg">
+                    <div class="reveal-header flex justify-between items-center p-6 cursor-pointer">
+                        <h3 class="font-bold text-lg">🌾 Regional WA: The Digital Divide Crisis</h3>
+                        <div class="expand-icon text-2xl font-light">+</div>
+                    </div>
+                    <div class="reveal-content text-gray-300">
+                        <p>At just 11% adoption versus 32% in metro areas, regional WA has the WORST metro-regional AI gap in Australia. This is not just a number—it's a direct threat to the future viability and competitiveness of key regional industries like agriculture, tourism, and mining services.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section id="cta" class="fade-in-up">
+            <div class="card-bg rounded-lg p-8 md:p-12 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-red-600/20 to-sky-600/20 opacity-50 -z-10"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Don't Let Your Business Become a Statistic.</h2>
+                <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Get the complete strategic analysis and discover the actionable steps you can take to bridge the AI gap and secure your future.</p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition text-lg w-full md:w-auto">
+                        📊 Download Full Report
+                    </button>
+                    <button id="book-consultation" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition text-lg w-full md:w-auto">
+                        📞 Book Free AI Strategy Session
+                    </button>
+                </div>
+                 <div class="mt-8">
+                    <p class="text-sm text-gray-400 mb-2">Share this shocking data:</p>
+                    <div class="flex gap-4 justify-center">
+                        <button class="share-btn" data-platform="linkedin">
+                            <svg class="w-6 h-6 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </button>
+                         <button class="share-btn" data-platform="twitter">
+                           <svg class="w-6 h-6 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.295 1.616 4.22 3.766 4.662-.63.173-1.303.224-1.993.187.621 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.588-7.52 2.588-.49 0-.974-.03-1.451-.086 2.685 1.725 5.872 2.73 9.282 2.73 9.482 0 14.502-7.85 14.502-14.502 0-.22 0-.44-.015-.66.986-.715 1.84-1.62 2.534-2.62z"/></svg>
+                        </button>
+                         <button class="share-btn" data-platform="email">
+                            <svg class="w-6 h-6 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 WA AI Strategy Report. All rights reserved.</p>
+            <p>Data sourced from Australian Bureau of Statistics, Goldman Sachs Global Investment Research, and industry surveys conducted in Q3 2025.</p>
+        </div>
+    </footer>
+
+    <!-- Consultation Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 hidden">
+        <div id="modal-content" class="card-bg rounded-lg p-8 max-w-lg w-full transform transition-all opacity-0 -translate-y-10">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-white">Book Your Free Strategy Session</h3>
+                <button id="close-modal" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <p class="text-gray-300 mb-6">Take the first step to closing the AI gap. Fill out the form below and our team will be in touch to schedule your complimentary consultation.</p>
+            <form>
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
+                    <input type="text" id="name" class="w-full bg-gray-900 border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
+                    <input type="email" id="email" class="w-full bg-gray-900 border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <div class="mb-6">
+                    <label for="company" class="block text-sm font-medium text-gray-400 mb-1">Company Name</label>
+                    <input type="text" id="company" class="w-full bg-gray-900 border border-gray-700 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition text-lg">Request My Session</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Intersection Observer for animations ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate numbers
+                        const numberElement = entry.target.querySelector('[data-target]');
+                        if (numberElement) {
+                            animateValue(numberElement, 0, parseInt(numberElement.dataset.target, 10), 1500);
+                        }
+                        
+                        // Animate progress bars
+                        const progressFill = entry.target.querySelector('.progress-fill');
+                        if(progressFill) {
+                            setTimeout(() => {
+                                progressFill.style.width = progressFill.dataset.width + '%';
+                            }, 200);
+                        }
+
+                        // Unobserve after animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            // Add observer to all elements that need to be animated
+            document.querySelectorAll('.fade-in-up, [data-target], .bar-container').forEach(el => {
+                 // For elements with data-target, observe their parent card
+                if (el.hasAttribute('data-target')) {
+                    observer.observe(el.closest('.card-bg'));
+                } else {
+                    observer.observe(el);
+                }
+            });
+
+
+            // --- Animate value function ---
+            function animateValue(element, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    element.innerHTML = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            // --- Accordion (Reveal Cards) Logic ---
+            const revealHeaders = document.querySelectorAll('.reveal-header');
+            revealHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const card = header.parentElement;
+                    const currentlyActive = document.querySelector('.reveal-card.active');
+                    
+                    if (currentlyActive && currentlyActive !== card) {
+                        currentlyActive.classList.remove('active');
+                    }
+                    
+                    card.classList.toggle('active');
+                });
+            });
+            
+            // --- Modal Logic ---
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            const openModalBtn = document.getElementById('book-consultation');
+            const closeModalBtn = document.getElementById('close-modal');
+
+            const openModal = () => {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalContent.classList.remove('opacity-0', '-translate-y-10');
+                }, 10);
+            };
+
+            const closeModal = () => {
+                modalContent.classList.add('opacity-0', '-translate-y-10');
+                 setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            };
+
+            openModalBtn.addEventListener('click', openModal);
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // --- Social Sharing Logic ---
+            const shareButtons = document.querySelectorAll('.share-btn');
+            const shareURL = window.location.href;
+            const shareTitle = "WA's $146B AI Crisis: Shocking data reveals 76% of SMEs are being left behind. #WACrisis #AI #Business";
+            
+            shareButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const platform = button.dataset.platform;
+                    let url = '';
+                    
+                    switch(platform) {
+                        case 'linkedin':
+                            url = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareURL)}&title=${encodeURIComponent(shareTitle)}`;
+                            break;
+                        case 'twitter':
+                            url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareURL)}&text=${encodeURIComponent(shareTitle)}`;
+                            break;
+                        case 'email':
+                            url = `mailto:?subject=${encodeURIComponent("Shocking Data on WA's AI Adoption")}&body=${encodeURIComponent(shareTitle + "\n\n" + shareURL)}`;
+                            break;
+                    }
+                    
+                    if (url) {
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

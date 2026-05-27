@@ -1,0 +1,98 @@
+# KTG Content Pipeline Configuration
+# Copy to config.local.yaml and customize
+
+llm:
+  # Provider: ollama, lmstudio, google, openrouter
+  provider: ollama
+  
+  # Ollama settings
+  ollama:
+    base_url: http://localhost:11434
+    model: qwen-opus-hybrid  # or gemma2, llama3, etc.
+    temperature: 0.7
+    max_tokens: 2000
+  
+  # LM Studio settings
+  lmstudio:
+    base_url: http://localhost:1234/v1
+    model: local-model  # auto-detected
+    temperature: 0.7
+    max_tokens: 2000
+  
+  # Google AI Studio (cheap, no local GPU needed)
+  google:
+    api_key: ${GOOGLE_API_KEY}  # Set env var
+    model: gemini-2.0-flash-exp
+    temperature: 0.7
+    max_tokens: 2000
+  
+  # OpenRouter (unified API for many models)
+  openrouter:
+    api_key: ${OPENROUTER_API_KEY}
+    model: qwen/qwen-2.5-72b-instruct
+    temperature: 0.7
+    max_tokens: 2000
+
+image_gen:
+  # Provider: local_sd, comfyui, google, banana
+  provider: google
+  
+  # Google AI Studio (cheapest, ~$0.002/image)
+  google:
+    api_key: ${GOOGLE_API_KEY}
+    model: gemini-2.0-flash-exp-image-generation
+  
+  # Local Stable Diffusion / ComfyUI
+  local_sd:
+    base_url: http://localhost:7860  # Automatic1111
+    steps: 20
+    cfg_scale: 7
+  
+  comfyui:
+    base_url: http://localhost:8188
+    workflow: workflows/ktg_hero.json
+
+# Platform settings
+platforms:
+  medium:
+    enabled: true
+    max_length: 5000
+  
+  reddit:
+    enabled: true
+    max_length: 2000
+    subreddit: r/artificial
+  
+  x:
+    enabled: true
+    thread_posts: 8
+    max_length_per_post: 280
+  
+  linkedin:
+    enabled: true
+    max_length: 3000
+    tone: professional
+  
+  meta:
+    enabled: true
+    max_length: 2000
+    include_emoji: true
+
+# Output settings
+output:
+  dir: pipeline/output
+  publish_kit_dir: pipeline/publish-kit
+  formats: [markdown, json, buffer_csv]
+
+# SEO settings
+seo:
+  generate_meta: true
+  generate_schema: true
+  generate_keywords: true
+  target_keyword_count: 5
+
+# Ads settings
+ads:
+  generate_google: true
+  generate_meta: true
+  generate_linkedin: true

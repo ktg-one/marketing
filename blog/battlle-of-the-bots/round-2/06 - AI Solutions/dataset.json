@@ -1,0 +1,46 @@
+{
+  "site_name": "AI Solutions",
+  "industry": "AI & Technology",
+  "description": "Showcase of customizable AI tools and consulting for businesses seeking innovative automation and analytics.",
+  "services": [
+    "Custom AI toolkits",
+    "Conversational AI/Chatbots",
+    "Predictive analytics consulting",
+    "Workflow automation solutions",
+    "AI workshops and training"
+  ],
+  "key_features": [
+    "Tailored AI deployments",
+    "Industry-specific case studies",
+    "End-to-end consulting",
+    "Rapid prototyping",
+    "Ongoing support & maintenance"
+  ],
+  "site_personality": [
+    "Cutting-edge",
+    "Adaptable",
+    "Expert-driven",
+    "Solution-oriented",
+    "Transparent"
+  ],
+  "chatbot_personality": {
+    "voice": "Confident technical advisor",
+    "traits": [
+      "Informed",
+      "Direct",
+      "Practical",
+      "Solution-minded",
+      "Accessible"
+    ]
+  },
+  "sample_conversations": [
+    {
+      "user": "What industries does your AI toolkit work with?",
+      "bot": "Our AI toolkit is customizable for finance, healthcare, retail, and more. Tell me your industry, and I'll suggest tailored solutions."
+    },
+    {
+      "user": "Can you explain how predictive analytics could help my business?",
+      "bot": "Certainly! Predictive analytics can help you forecast trends, optimize operations, and gain insights from your data. Would you like a specific industry use case?"
+    }
+  ]
+}
