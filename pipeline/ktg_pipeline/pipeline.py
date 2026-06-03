@@ -30,7 +30,10 @@ class ContentPipeline:
         voice_path = Path('blog/user_voice.md')
         try:
             return voice_path.read_text(encoding='utf-8')
-        except OSError:
+        except OSError as e:
+            # Signal the regression: locked-voice brand + no test suite means a
+            # silently-missing voice file would ship generic prose unnoticed.
+            print(f"[warn] House voice not loaded ({voice_path}): {e} — prose will be generic.")
             return None
 
     def _init_llm(self):
