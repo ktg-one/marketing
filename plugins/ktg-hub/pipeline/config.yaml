@@ -81,7 +81,9 @@ platforms:
 # Output settings
 output:
   dir: pipeline/output
-  publish_kit_dir: pipeline/publish-kit
+  # Publish-kit lives in the per-slug output dir (pipeline/output/<slug>/) — the
+  # same dir the pipeline fills and the review gate / publish flow approve.
+  publish_kit_dir: pipeline/output
   formats: [markdown, json, buffer_csv]
 
 # SEO settings

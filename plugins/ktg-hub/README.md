@@ -1,6 +1,6 @@
 # ktg-hub
 
-A self-contained Claude Code plugin for the **KTG / Good AI** content marketing hub. It drives a Gemini-powered pipeline that takes one blog post and produces a multi-platform publish-kit — platform variants (Medium, Reddit, X, LinkedIn, Meta), SEO/GEO optimization, JSON-LD schema, and an image — then stops at a non-bypassable human review gate before anything ships.
+A self-contained Claude Code plugin for the **KTG / Good AI** content marketing hub. It drives a Gemini-powered pipeline that takes one blog post and produces a multi-platform publish kit — platform variants (Medium, Reddit, X, LinkedIn, Meta), SEO/GEO optimization, JSON-LD schema, and an image — then stops at a non-bypassable human review gate before anything ships.
 
 Content voice is **Myth-Hilarity + Tech Anthropology** (locked), sourced from `blog/user_voice.md`.
 
@@ -21,7 +21,7 @@ Content voice is **Myth-Hilarity + Tech Anthropology** (locked), sourced from `b
 
 ## Usage
 
-1. **Run the pipeline:** `/ktg-hub:hub <post.md>` — generates the publish-kit and STOPS at the review gate.
+1. **Run the pipeline:** `/ktg-hub:hub <post.md>` — generates the publish kit and STOPS at the review gate.
 2. **Review:** inspect the variants, SEO/GEO, and schema. Reply `YES` to the reviewer to approve **this specific post**.
 3. **Publish:** `/ktg-hub:publish <slug>` — deploys to Vercel and posts LinkedIn + Reddit via Composio.
 

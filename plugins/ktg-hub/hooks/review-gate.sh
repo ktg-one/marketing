@@ -6,7 +6,7 @@
 # action (Composio reddit/linkedin sends, Vercel deploy) and blocks unless the
 # active slug has an explicit human-written approval marker:
 #
-#     <project>/pipeline/publish-kit/<slug>/.approved
+#     <project>/pipeline/output/<slug>/.approved
 #
 # FAIL-CLOSED PRINCIPLE: if we cannot positively confirm an approval marker for
 # a definite slug, we BLOCK (exit 2). Ambiguity, missing slug, unreadable
@@ -16,7 +16,7 @@
 #
 # Slug resolution order:
 #   1. $KTG_PUBLISH_SLUG env var (set explicitly by the publish flow), else
-#   2. the single slug under pipeline/publish-kit/ that already has .approved
+#   2. the single slug under pipeline/output/ that already has .approved
 #      (if exactly one exists — unambiguous), else
 #   3. BLOCK.
 #
@@ -35,12 +35,12 @@ STDIN_JSON="$(cat 2>/dev/null || true)"
 # Determine the project root. CLAUDE_PROJECT_DIR is set by Claude Code; fall
 # back to the current directory if it is somehow absent.
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
-KIT_DIR="${PROJECT_DIR}/pipeline/publish-kit"
+KIT_DIR="${PROJECT_DIR}/pipeline/output"
 
 block() {
   echo "REVIEW GATE BLOCKED: $1" >&2
   echo "No per-post approval marker found. Run /ktg-hub:hub <post>, review the" >&2
-  echo "publish-kit, and reply YES to the reviewer to approve THIS slug before" >&2
+  echo "publish kit, and reply YES to the reviewer to approve THIS slug before" >&2
   echo "publishing. The gate is non-bypassable and fail-closed." >&2
   exit 2
 }
@@ -52,7 +52,7 @@ if [ -n "${KTG_PUBLISH_SLUG:-}" ]; then
   SLUG="${KTG_PUBLISH_SLUG}"
 fi
 
-# 2. Otherwise, if exactly one slug under publish-kit is already approved, use it.
+# 2. Otherwise, if exactly one slug under pipeline/output is already approved, use it.
 if [ -z "${SLUG}" ] && [ -d "${KIT_DIR}" ]; then
   approved_count=0
   approved_slug=""
@@ -74,6 +74,13 @@ fi
 if [ -z "${SLUG}" ]; then
   block "could not determine the active publish slug"
 fi
+
+# Security: the slug must be a single safe path segment. Reject empty, any
+# path separator, parent-dir traversal (..), or dotfile-leading slugs so the
+# marker path can never escape pipeline/output/ (e.g. KTG_PUBLISH_SLUG="../..").
+case "$SLUG" in
+  ''|*/*|*..*|.*) block "invalid or unsafe slug: '$SLUG'";;
+esac
 
 # Final check: the resolved slug must have an approval marker.
 MARKER="${KIT_DIR}/${SLUG}/.approved"

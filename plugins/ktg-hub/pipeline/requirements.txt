@@ -1,13 +1,9 @@
 # KTG Content Pipeline Dependencies
 # Install: pip install -r pipeline/requirements.txt
+#
+# Runtime deps only — these are what ktg_pipeline actually imports:
+#   pyyaml   -> config + frontmatter parsing (import yaml)
+#   requests -> provider HTTP calls (Gemini / Ollama / OpenRouter / LM Studio)
 
-# Core
 pyyaml>=6.0
 requests>=2.28.0
-
-# Optional: For better YAML handling
-ruamel.yaml>=0.17.0
-
-# Optional: For image generation
-# pillow>=9.0.0
-# openai>=1.0.0  # If using OpenAI-compatible APIs

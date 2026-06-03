@@ -1,6 +1,7 @@
 """Main pipeline orchestrator."""
 
 import json
+import os
 import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -25,17 +26,43 @@ class ContentPipeline:
     def _load_voice_system(self) -> Optional[str]:
         """Load the Myth-Hilarity house voice system prompt once.
 
-        Robust: if blog/user_voice.md is missing, return None and proceed
-        (calls fall back to system=None, i.e. no voice injection).
+        Resolution order (portable when the plugin is installed and CWD is some
+        other project):
+          1. $KTG_VOICE_FILE if set (the /ktg-hub:hub command exports this to the
+             bundled voice file via ${CLAUDE_PLUGIN_ROOT}).
+          2. The voice file bundled alongside this package:
+             plugins/ktg-hub/voice/user_voice.md (relative to this file).
+          3. blog/user_voice.md relative to CWD (in-repo dev convenience).
+
+        Robust: if no candidate is readable, return None and proceed (calls fall
+        back to system=None, i.e. no voice injection). Crash-safe — any error in
+        path resolution degrades to None rather than raising.
         """
-        voice_path = Path('blog/user_voice.md')
+        candidates = []
         try:
-            return voice_path.read_text(encoding='utf-8')
-        except OSError as e:
-            # Signal the regression: locked-voice brand + no test suite means a
-            # silently-missing voice file would ship generic prose unnoticed.
-            print(f"[warn] House voice not loaded ({voice_path}): {e} — prose will be generic.")
+            env_voice = os.environ.get('KTG_VOICE_FILE')
+            if env_voice:
+                candidates.append(Path(env_voice))
+            # This file lives at .../ktg-hub/pipeline/ktg_pipeline/pipeline.py;
+            # parents[2] is .../ktg-hub, so the bundled voice is at
+            # ktg-hub/voice/user_voice.md.
+            candidates.append(Path(__file__).resolve().parents[2] / 'voice' / 'user_voice.md')
+            candidates.append(Path('blog/user_voice.md'))
+        except Exception as e:
+            print(f"[warn] House voice path resolution failed: {e} — prose will be generic.")
             return None
+
+        for voice_path in candidates:
+            try:
+                return voice_path.read_text(encoding='utf-8')
+            except OSError:
+                continue
+
+        # Signal the regression: locked-voice brand + no test suite means a
+        # silently-missing voice file would ship generic prose unnoticed.
+        tried = ', '.join(str(c) for c in candidates)
+        print(f"[warn] House voice not loaded (tried: {tried}) — prose will be generic.")
+        return None
 
     def _init_llm(self):
         """Initialize LLM provider based on config."""
