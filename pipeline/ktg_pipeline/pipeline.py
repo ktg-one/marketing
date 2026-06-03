@@ -19,7 +19,20 @@ class ContentPipeline:
     def __init__(self, config: Config = None):
         self.config = config or Config()
         self.llm = self._init_llm()
-    
+        self.voice_system = self._load_voice_system()
+
+    def _load_voice_system(self) -> Optional[str]:
+        """Load the Myth-Hilarity house voice system prompt once.
+
+        Robust: if blog/user_voice.md is missing, return None and proceed
+        (calls fall back to system=None, i.e. no voice injection).
+        """
+        voice_path = Path('blog/user_voice.md')
+        try:
+            return voice_path.read_text(encoding='utf-8')
+        except OSError:
+            return None
+
     def _init_llm(self):
         """Initialize LLM provider based on config."""
         provider = self.config.llm_provider
@@ -159,8 +172,8 @@ Requirements:
 - End with: "Originally published on [KTG](https://ktg.one)"
 
 Output only the repurposed article, no explanations."""
-        
-        content = self.llm.generate(prompt)
+
+        content = self.llm.generate(prompt, system=self.voice_system)
         
         output_file = out_path / 'medium.md'
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -186,8 +199,8 @@ Requirements:
 - No emojis, Reddit doesn't like them
 
 Output only the Reddit post text."""
-        
-        content = self.llm.generate(prompt)
+
+        content = self.llm.generate(prompt, system=self.voice_system)
         
         output_file = out_path / 'reddit.md'
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -220,8 +233,8 @@ Output format:
 1/ [text]
 2/ [text]
 etc."""
-        
-        content = self.llm.generate(prompt)
+
+        content = self.llm.generate(prompt, system=self.voice_system)
         
         output_file = out_path / 'x-thread.md'
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -248,8 +261,8 @@ Requirements:
 - End with hashtags
 
 Output only the LinkedIn post text."""
-        
-        content = self.llm.generate(prompt)
+
+        content = self.llm.generate(prompt, system=self.voice_system)
         
         output_file = out_path / 'linkedin.md'
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -276,8 +289,8 @@ Requirements:
 - Image required (note this)
 
 Output only the Facebook post text."""
-        
-        content = self.llm.generate(prompt)
+
+        content = self.llm.generate(prompt, system=self.voice_system)
         
         output_file = out_path / 'meta.md'
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -303,9 +316,12 @@ Generate:
 6. Schema.org JSON-LD (Article type)
 
 Output as structured markdown."""
-        
+
+        # Voice deliberately skipped: SEO output contains length-capped title/meta
+        # tags and Schema.org JSON-LD — house-voice prose would blow char limits
+        # and corrupt the structured/JSON output.
         content = self.llm.generate(prompt)
-        
+
         output_file = out_path / 'seo.md'
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(f"---\ntype: seo\nsource: {post['slug']}\n---\n\n")
@@ -327,8 +343,8 @@ Generate for:
 3. LinkedIn Ads (sponsored content text)
 
 Output as structured markdown."""
-        
-        content = self.llm.generate(prompt)
+
+        content = self.llm.generate(prompt, system=self.voice_system)
         
         output_file = out_path / 'ads.md'
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -356,7 +372,10 @@ Requirements:
 - Include specific colors, composition, mood
 
 Output only the prompt text (for image generator)."""
-        
+
+        # Voice deliberately skipped: this produces a literal image-generator
+        # prompt (visual composition spec), not house prose — narrative voice
+        # would derail the concrete visual directives.
         hero_prompt = self.llm.generate(prompt)
         images['hero'] = hero_prompt
         
