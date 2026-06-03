@@ -8,3 +8,6 @@ data/
 in-memoria.db
 Dpackagesnpm/
 __pycache__/
+.env
+.env.local
+.env.*
