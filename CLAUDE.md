@@ -177,3 +177,19 @@ Ollama/LM Studio remain in `config.yaml` as **offline fallback only** — the pi
 
 - `C:/Users/kevin/knowledge2026/` — parent wiki vault (separate repo).
 - `C:/Users/kevin/Desktop/ktg-one/` and `C:/Users/kevin/projects2026/06-projects-code/goodai-mate/` — Next.js sites (separate build systems).
+
+## Agent skills
+
+Per-repo config consumed by the engineering skills (Matt Pocock set). Full details in `docs/agents/`.
+
+### Issue tracker
+
+GitHub issues in `ktg-one/marketing` via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Canonical five-role vocabulary (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`); not yet created in the repo — make on first use. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context (root `CONTEXT.md` + `docs/adr/`, neither created yet); wiki voice/concept pages are the de-facto glossary until `CONTEXT.md` exists. See `docs/agents/domain.md`.

@@ -1,12 +1,12 @@
 # ktg-hub
 
-A self-contained Claude Code plugin for the **KTG / Good AI** content marketing hub. It drives a Gemini-powered pipeline that takes one blog post and produces a multi-platform publish kit — platform variants (Medium, Reddit, X, LinkedIn, Meta), SEO/GEO optimization, JSON-LD schema, and an image — then stops at a non-bypassable human review gate before anything ships.
+A self-contained plugin for the **KTG / Good AI** content marketing hub, for **Claude Code** and **Claude Cowork**. It drives a Gemini-powered pipeline that takes one blog post and produces a multi-platform publish kit — platform variants (Medium, Reddit, X, LinkedIn, Meta), SEO/GEO optimization, JSON-LD schema, and an image — then stops at a non-bypassable human review gate before anything ships.
 
-Content voice is **Myth-Hilarity + Tech Anthropology** (locked), sourced from `blog/user_voice.md`.
+Content voice is **Myth-Hilarity + Tech Anthropology** (locked), bundled at `voice/user_voice.md`.
 
 ## What's inside
 
-- **Commands** — `/ktg-hub:hub` (run pipeline -> review gate) and `/ktg-hub:publish` (deploy after approval).
+- **Skills** — `hub` (run pipeline → review gate) and `publish` (deploy after approval). Cowork surfaces these as Skills; in Claude Code they invoke as `/ktg-hub:hub` and `/ktg-hub:publish`.
 - **Agents** — `content-repurposer` (voiced platform variants), `seo-geo-optimizer` (SEO + GEO score + JSON-LD), `publish-reviewer` (the review-gate keeper).
 - **Hook** — a `PreToolUse` review gate that fail-closed blocks any publish (Composio reddit/linkedin, Vercel deploy) without a per-post approval marker.
 - **MCP** — bundles the nanobanana (Gemini image) MCP server. (Composio is remote/OAuth and is referenced, not bundled.)
@@ -14,10 +14,13 @@ Content voice is **Myth-Hilarity + Tech Anthropology** (locked), sourced from `b
 
 ## Install
 
+**Claude Code:**
 ```
 /plugin marketplace add ktg-one/marketing
 /plugin install ktg-hub@ktg-one
 ```
+
+**Claude Cowork:** open the `ktg-hub.plugin` file and accept it in the chat preview.
 
 ## Usage
 
@@ -34,5 +37,5 @@ X, Meta, and Medium stay **manual** — their platform APIs block reliable auto-
 
 ## Non-negotiables
 
-- **Voice is locked** — Myth-Hilarity + Tech Anthropology, from `blog/user_voice.md`. Applied to narrative copy only, never to JSON/structured outputs.
+- **Voice is locked** — Myth-Hilarity + Tech Anthropology, from the bundled `voice/user_voice.md`. Applied to narrative copy only, never to JSON/structured outputs.
 - **The review gate is non-bypassable and fail-closed.** Approval is **per-post only** (one `YES` = one slug), never session-wide. The `PreToolUse` hook independently re-checks the `.approved` marker and blocks publish calls that lack it.
