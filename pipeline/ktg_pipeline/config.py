@@ -50,7 +50,7 @@ class Config:
     
     @property
     def llm_provider(self) -> str:
-        return self.get('llm.provider', 'ollama')
+        return self.get('llm.provider', 'google')
     
     @property
     def llm_config(self) -> Dict[str, Any]:

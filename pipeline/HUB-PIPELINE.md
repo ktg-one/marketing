@@ -34,34 +34,35 @@ One run on a post (`blog/your-post.md`) creates `pipeline/publish-kit/<slug>/`:
 
 That's it. The pipeline runs Steps 1–3 (repurpose → image → optimize), presents a review gate, then waits for your `YES` before doing anything with publish.
 
-To skip Ollama and use cloud skills for text:
+To force the offline local models instead of Gemini:
 ```
-/hub blog/your-post.md --cloud
+/hub blog/your-post.md --local
 ```
 
 ---
 
-## Text generation — local-first, $0
+## Text generation — Google-first
 
-All text tasks route through **Ollama** by default. No API calls, no cost.
+All text tasks route through **Gemini** by default. Driver: `GEMINI_API_KEY` (already in your shell).
 
 | Task | Model | What it does |
 |------|-------|-------------|
-| 5× repurpose | `Ministral:latest` (13.5B) | Medium, Reddit, X, Meta, LinkedIn variants |
-| GEO analysis | `Qwopus:latest` (9B) | AI citation readiness score |
-| SEO audit | `Qwopus:latest` (9B) | On-page + content quality |
-| Technical SEO | `Qwopus:latest` (9B) | Heading structure, links, meta |
-| Schema JSON-LD | `Ministral:latest` (13.5B) | Valid structured data |
-| SEO checklist | `Qwopus:latest` (9B) | 11-item pass/fail |
+| 5× repurpose | `gemini-3.5-flash` | Medium, Reddit, X, Meta, LinkedIn variants |
+| GEO analysis | `gemini-3.5-flash` | AI citation readiness score |
+| SEO audit | `gemini-3.5-flash` | On-page + content quality |
+| Technical SEO | `gemini-3.5-flash` | Heading structure, links, meta |
+| Schema JSON-LD | `gemini-3.5-flash` | Valid structured data |
+| SEO checklist | `gemini-3.5-flash` | 11-item pass/fail |
+| Hero draft / hard reasoning | `gemini-3-pro-preview` | escalate when Flash isn't enough |
 
-Your RTX 5070 handles all of this. Cost per post: **$0**.
+Cost per post: **fractions of a cent** (Flash). **Voice:** inject `blog/user_voice.md` into every prompt or output drifts generic.
 
-Check Ollama is running before `/hub`:
+Verify the key before `/hub`:
 ```bash
-curl http://localhost:11434/api/tags
+curl -s "https://generativelanguage.googleapis.com/v1beta/models?key=$GEMINI_API_KEY" | head -c 200
 ```
 
-If it's down, start it: open Ollama from the taskbar or run `ollama serve`.
+Offline fallback only: `/hub <post> --local` routes text through Ollama (small local models, lower quality).
 
 ---
 
@@ -153,14 +154,14 @@ Type `STOP` to cancel — all generated files are kept.
 
 | Task | Cost |
 |------|------|
-| 5 platform repurpose variants | $0 (local Ollama) |
-| GEO + SEO + schema + checklist | $0 (local Ollama) |
+| 5 platform repurpose variants | ~$0.00X (Gemini Flash) |
+| GEO + SEO + schema + checklist | ~$0.00X (Gemini Flash) |
 | Hero image (Gemini 2K) | ~$0.13 |
 | Hero image (Grok) | API rate or subscription |
 | Hero image (local 5070) | ~$0.01 electricity |
 | Social publishing (Composio) | Free tier / subscription |
-| **Total per post (text only)** | **$0** |
-| **Total per post (with Gemini image)** | **~$0.13** |
+| **Total per post (text only)** | **~$0.01** |
+| **Total per post (with Gemini image)** | **~$0.14** |
 
 ---
 
@@ -168,9 +169,9 @@ Type `STOP` to cancel — all generated files are kept.
 
 | Problem | Fix |
 |---------|-----|
-| Ollama not running | Start from taskbar or `ollama serve` |
-| Model missing | `ollama pull Ministral:latest` |
-| Post too long (>8k words) | Pipeline auto-chunks — no action needed |
+| GEMINI_API_KEY unset | Set it in your shell profile; verify with the model-list curl above |
+| Gemini 429 rate limit | Back off; retry failed step; drop to `gemini-3.5-flash-lite` if sustained |
+| Output sounds generic | Voice ruleset not injected — pass `blog/user_voice.md` into the prompt |
 | Gemini 403 key leaked | Generate new key at aistudio.google.com/apikey |
 | ImageMagick missing (no crops) | `winget install ImageMagick.ImageMagick` |
 | Composio timeout | Retry the publish step; all generated files survive the timeout |

@@ -28,6 +28,6 @@ class BaseImageProvider(ABC):
         self.config = config
     
     @abstractmethod
-    def generate(self, prompt: str, width: int = 1024, height: int = 1024) -> str:
+    def generate_image(self, prompt: str, width: int = 1024, height: int = 1024) -> str:
         """Generate image from prompt, return path to saved image."""
         pass

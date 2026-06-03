@@ -3,13 +3,13 @@
 KTG Content Pipeline — Cross-platform, reusable, AI-powered.
 
 Usage:
-    python pipeline/run.py input/my-post.md
-    python pipeline/run.py input/my-post.md --provider google
-    
+    python pipeline/run.py input/my-post.md                 # Google (default)
+    python pipeline/run.py input/my-post.md --provider ollama  # offline fallback
+
 Environment Variables:
-    OLLAMA_URL - Ollama endpoint (default: http://localhost:11434)
-    GOOGLE_API_KEY - Google AI Studio API key
-    OPENROUTER_API_KEY - OpenRouter API key
+    GEMINI_API_KEY - Google AI Studio API key (DEFAULT engine)
+    OPENROUTER_API_KEY - OpenRouter API key (fallback)
+    OLLAMA_URL - Ollama endpoint (offline fallback, default: http://localhost:11434)
 """
 
 import sys
@@ -24,14 +24,21 @@ from ktg_pipeline.pipeline import ContentPipeline
 
 
 def main():
+    # Windows consoles default to cp1252 and choke on ✓/✗ — force UTF-8.
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+
     parser = argparse.ArgumentParser(
         description='KTG Content Pipeline — Generate social variants from blog posts'
     )
     parser.add_argument('input', help='Input blog post (markdown with YAML frontmatter)')
     parser.add_argument('--config', '-c', help='Config file path')
     parser.add_argument('--output', '-o', help='Output directory')
-    parser.add_argument('--provider', '-p', choices=['ollama', 'google', 'openrouter'],
-                        help='Override LLM provider')
+    parser.add_argument('--provider', '-p', choices=['google', 'openrouter', 'ollama', 'lmstudio'],
+                        help='Override LLM provider (default: google, from config.yaml)')
     parser.add_argument('--model', '-m', help='Override model name')
     parser.add_argument('--list-ollama', action='store_true', 
                         help='List available Ollama models')
@@ -78,10 +85,10 @@ def main():
         
     except ConnectionError as e:
         print(f"\nError: {e}")
-        print("\nTroubleshooting:")
-        print("  - Is your LLM server running?")
-        print("  - Check OLLAMA_URL or other endpoint settings")
-        print("  - Run: ollama serve (for Ollama)")
+        print("\nTroubleshooting (default provider = google):")
+        print("  - Is GEMINI_API_KEY set in your shell? (echo $env:GEMINI_API_KEY)")
+        print("  - Verify the key: curl https://generativelanguage.googleapis.com/v1beta/models?key=$GEMINI_API_KEY")
+        print("  - Offline fallback: --provider ollama (requires ollama serve)")
         sys.exit(1)
     except Exception as e:
         print(f"\nError: {e}")

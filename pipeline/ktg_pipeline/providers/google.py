@@ -12,9 +12,9 @@ class GoogleProvider(BaseLLMProvider, BaseImageProvider):
         super().__init__(config)
         self.api_key = config.get('api_key')
         if not self.api_key:
-            raise ValueError("Google API key required. Set GOOGLE_API_KEY env var.")
-        
-        self.model = config.get('model', 'gemini-2.0-flash-exp')
+            raise ValueError("Google API key required. Set GEMINI_API_KEY env var.")
+
+        self.model = config.get('model', 'gemini-3.5-flash')
         self.temperature = config.get('temperature', 0.7)
         self.max_tokens = config.get('max_tokens', 2000)
         self.base_url = "https://generativelanguage.googleapis.com/v1beta"
@@ -58,7 +58,7 @@ class GoogleProvider(BaseLLMProvider, BaseImageProvider):
         """Stream not implemented for Google (non-streaming API simpler)."""
         yield self.generate(prompt, system)
     
-    def generate(self, prompt: str, width: int = 1024, height: int = 1024) -> str:
+    def generate_image(self, prompt: str, width: int = 1024, height: int = 1024) -> str:
         """Generate image using Google AI Studio (if model supports it)."""
         # Image generation via Gemini requires specific model
         # This is a placeholder - actual implementation depends on API
