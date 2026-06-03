@@ -1,0 +1,9 @@
+{
+  "name": "ktg-one",
+  "owner": { "name": "Kevin Tan", "url": "https://goodai.au" },
+  "metadata": { "description": "KTG / Good AI content marketing hub plugins" },
+  "plugins": [
+    { "name": "ktg-hub", "source": "./plugins/ktg-hub",
+      "description": "Google/Gemini-powered content pipeline: repurpose -> SEO/GEO -> image -> review gate -> publish, in Myth-Hilarity house voice." }
+  ]
+}

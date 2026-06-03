@@ -1,0 +1,8 @@
+{
+  "name": "ktg-hub",
+  "version": "0.1.0",
+  "description": "Google/Gemini-powered content pipeline: repurpose, SEO/GEO, image, review gate, publish, in the KTG Myth-Hilarity house voice.",
+  "author": { "name": "Kevin Tan", "url": "https://goodai.au" },
+  "license": "MIT",
+  "keywords": ["content", "marketing", "gemini", "seo", "geo", "publishing", "ktg", "myth-hilarity"]
+}

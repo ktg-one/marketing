@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__.*(reddit|linkedin|composio).*|.*deploy_to_vercel.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/review-gate.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
