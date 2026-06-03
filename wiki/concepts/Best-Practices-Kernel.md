@@ -1,4 +1,6 @@
 ---
+status: developing
+updated: 2026-06-03
 type: concept
 title: "Best-Practices Kernel"
 aliases: ["best-practices", "engineering kernel", "agent kernel", "six-cut kernel"]

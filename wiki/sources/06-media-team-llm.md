@@ -1,4 +1,5 @@
 ---
+status: developing
 type: source
 title: "06-Media-Team-LLM — Sprite Media Index"
 source_file: "videography/-06-Media-Team-LLM.md"

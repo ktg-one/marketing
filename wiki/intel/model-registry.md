@@ -1,4 +1,5 @@
 ---
+status: developing
 type: intel
 title: "Model Registry"
 created: 2026-05-26
@@ -7,6 +8,9 @@ tags: [intel, models, local, api]
 ---
 
 # Model Registry
+
+> [!update] 2026-06-03 — Content engine migrated to Google/Gemini
+> The [[ktg-one]] Python pipeline (`pipeline/ktg_pipeline/`) no longer routes content generation through local Ollama models by default. The content engine is now **Google/Gemini** (see [[Google-Gemini-Engine]]): text = `gemini-3.5-flash` (hero/hard = `gemini-3-pro-preview`), images = Nano Banana `gemini-3.1-flash-image-preview`, driver `GEMINI_API_KEY`. **Ollama / LM Studio are now offline `--local` fallback only.** The "Local Models (Downloaded)" + local-first routing tables below are SUPERSEDED for the content pipeline — kept for historical/fallback reference.
 
 ## Local Models (Downloaded)
 
@@ -26,6 +30,9 @@ tags: [intel, models, local, api]
 | gpt-4 | OpenAI | Backup | General tasks |
 
 ## Model Routing
+
+> [!contradiction] Superseded by 2026-06-03 Gemini migration
+> The routing below shows **local** content gen (Gemini distilled via Ollama). As of 2026-06-03 the content pipeline routes to **hosted Google/Gemini** by default (`gemini-3.5-flash` / `gemini-3-pro-preview`), with Ollama as `--local` fallback. See [[Google-Gemini-Engine]] for the authoritative routing table.
 
 ```
 Task type → Model

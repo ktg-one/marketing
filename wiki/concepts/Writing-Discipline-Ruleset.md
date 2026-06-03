@@ -1,4 +1,6 @@
 ---
+status: developing
+updated: 2026-06-03
 type: concept
 title: "Writing Discipline Ruleset"
 tags: [concept, writing, prose, methodology, ai-writing]

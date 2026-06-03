@@ -1,4 +1,5 @@
 ---
+status: developing
 type: index
 title: "Concepts"
 created: 2026-05-16
@@ -60,7 +61,7 @@ Ideas, patterns, frameworks. One page per concept.
 
 ## Writing methodology
 
-- [[Writing Discipline Ruleset]] — prose-quality doctrine for AI-assisted writing; the technical complement to the brand voice layer
+- [[Writing-Discipline-Ruleset|Writing Discipline Ruleset]] — prose-quality doctrine for AI-assisted writing; the technical complement to the brand voice layer
 
 ## Pipeline architecture (ktg-one)
 

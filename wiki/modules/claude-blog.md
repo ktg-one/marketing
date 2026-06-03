@@ -1,4 +1,5 @@
 ---
+status: developing
 type: entity
 title: "claude-blog plugin"
 created: 2026-05-26

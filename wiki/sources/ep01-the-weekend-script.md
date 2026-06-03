@@ -1,4 +1,5 @@
 ---
+status: developing
 type: source
 title: "Episode 1 — The Weekend (Full Script)"
 source_file: "videography/-01 - Team LLM - Intro, Chatgpt.txt"

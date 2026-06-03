@@ -12,6 +12,19 @@ Append-only. **Newest entries at the TOP.** Never edit past entries.
 
 ---
 
+## 2026-06-03 — ingest + engine | Gemini migration, ktg-hub plugin, publish path
+
+- **Context note**: the wiki was neglected for most of this work session; this entry is the catch-up ingest. Trust state remains `probation`.
+- **Engine migration (Ollama → Google/Gemini)**: `pipeline/ktg_pipeline/` converted to hosted Gemini — text `gemini-3.5-flash` (hero/hard `gemini-3-pro-preview`), images Nano Banana `gemini-3.1-flash-image-preview`, driver `GEMINI_API_KEY`. House voice injected as system prompt into the 6 prose stages only (never JSON stages). Parallelized via ThreadPoolExecutor (8 concurrent, ~20s, error-isolated). Fixed a real double-defined `generate()` bug that shadowed text gen. Verified live ("PIPELINE OK", 8 files). Branch `feat/pipeline-google-voice-parallel`. Ollama/LM Studio kept as `--local` offline fallback only. → [[Google-Gemini-Engine]]
+- **ktg-hub plugin built**: dual-packaged as a Claude Code plugin (marketplace `ktg-one`, repo `./plugins/ktg-hub`) AND a Claude Cowork `.plugin` (`dist/ktg-hub.plugin`). Skills `hub` + `publish`; agents `content-repurposer`, `seo-geo-optimizer`, `publish-reviewer`; fail-closed `PreToolUse` hook `hooks/review-gate.sh` (verified to block path-traversal + unapproved slugs, exit 2); bundled nanobanana MCP + pipeline + voice. → [[ktg-hub-Plugin]]
+- **Publish path**: Composio connected to everything; key `COMPOSIO_API_KEY` in `.env` (gitignored). Publish = Vercel + LinkedIn + Reddit via Composio MCP behind non-bypassable per-post review gate. X/Meta/Medium stay MANUAL. → [[Composio]]
+- **SDK decision**: orchestration + publish = Claude Agent SDK (Python `claude_agent_sdk`) + Composio MCP. Gemini stays the generation engine, NOT orchestrated by Claude. Critical rule: never `permission_mode="bypassPermissions"` on publish (defeats the gate). Vercel AI SDK only if a streaming web UI is built later; LiteLLM/Pydantic AI = provider-agnostic Python alt. → [[Agent-SDK-Orchestration]]
+- **Corrected content flow (Kevin's ACTUAL flow)**: Research → NotebookLM → blog post WRITTEN IN CLAUDE (in-session, not Gemini) → images via banana → repurpose (Gemini pipeline) → review gate → Composio publish. Gemini = image model + repurposer, NOT the writer. Ads + videography = Gemini's domain, out of scope for the content hub. → [[Content-Production-Flow]]
+- **Wiki-lint swarm (4 agents)**: 76 pages frontmatter-fixed; link graph + content gaps mapped. Stale intel corrected via callouts: [[runtime-config]] (OpenCode → Claude Code), [[model-registry]]/[[hybrid-models-guide]] (local lineup → Gemini). Report: `wiki/meta/lint-report-2026-06-03.md`.
+- **Repo**: Matt Pocock skills config added (`docs/agents/`). Template reorg (`skills.md.typeui/` → `templates/`, dead notebooklm gitlinks removed) committed `387b109`.
+
+---
+
 ## 2026-05-27 — governance | Agent trust state established (`probation`)
 
 - **Trigger**: Kevin's direct feedback — multiple sessions of babysitting overhead, days of re-explaining the same things, while Kimi/DeepSeek shipped `sccd/` (1,608 lines) in under 3 hours during the same period. Kevin: "I was gonna wipe you last night... I would have to babysit or second-guess work."

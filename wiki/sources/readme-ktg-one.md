@@ -1,4 +1,7 @@
 ---
+status: developing
+created: 2026-06-03
+updated: 2026-06-03
 type: source
 title: "README.md — ktg-one (Intentionally Empty)"
 slug: readme-ktg-one

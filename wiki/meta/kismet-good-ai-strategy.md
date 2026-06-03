@@ -1,4 +1,5 @@
 ---
+updated: 2026-06-03
 type: meta
 title: "Kismet + Good AI — AI Readiness Strategy Context"
 status: active
@@ -12,7 +13,7 @@ tags: [meta, strategy, kismet, good-ai]
 
 ## The situation
 
-Kevin is the AI strategist bridging [[Good AI]] (the consultancy brand) and [[Kismet]] (the client sales operation). The immediate problem: Kismet's sales are declining and retention is poor. Previous builds — Notion workflows, dashboards, training — have not stuck. Partners Shane and Josh aren't attending training.
+Kevin is the AI strategist bridging [[Good-AI|Good AI]] (the consultancy brand) and [[Kismet]] (the client sales operation). The immediate problem: Kismet's sales are declining and retention is poor. Previous builds — Notion workflows, dashboards, training — have not stuck. Partners Shane and Josh aren't attending training.
 
 The macro framing: Australia's housing crisis + cost-of-living pressure is compressing the market Kismet operates in. The AI readiness question is whether smart automation can offset structural headwinds.
 
@@ -56,7 +57,7 @@ Key contributions to establish: independent framework development, long-term cro
 
 - [[strategic-deliverables]] — raw source page
 - [[Kismet]] — entity page
-- [[Good AI]] — entity page
+- [[Good-AI|Good AI]] — entity page
 - [[Team LLM Orchestration Roster]] — execution method
 - [[AI Anthropology Framing]] — proposed research lens
 - [[STRAWHATS-DIRECTIVE]] — the framework being documented

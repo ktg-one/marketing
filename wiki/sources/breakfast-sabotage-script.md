@@ -1,4 +1,5 @@
 ---
+status: developing
 type: source
 title: "The Breakfast Sabotage — Full Script (DeepSeek Cold Open)"
 source_file: "videography/Episodes--BREAKFAST.md"

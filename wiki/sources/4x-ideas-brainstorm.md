@@ -1,4 +1,5 @@
 ---
+status: developing
 type: source
 title: "4X Ideas — Producer Brainstorm (Gemini Saga + Series Arc)"
 source_file: "videography/-4XIDEAS.md"

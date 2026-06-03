@@ -1,4 +1,5 @@
 ---
+status: developing
 type: index
 title: "Cast"
 created: 2026-05-16
@@ -33,7 +34,7 @@ Locked canon for the 13-character animated series. Source: [[team-llm-production
 ## Special
 
 - [[User-Narrator]] (YOU / The Hiccup) — hopeful developer who accidentally adopted dysfunctional AI family
-- [[Prompt God]] — antagonist; giant glitching terminal symbol that physically possesses models to force Chain-of-Thought reasoning
+- [[Prompt-God|Prompt God]] — antagonist; giant glitching terminal symbol that physically possesses models to force Chain-of-Thought reasoning
 
 ## Naming convention
 

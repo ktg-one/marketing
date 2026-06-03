@@ -1,4 +1,5 @@
 ---
+updated: 2026-06-03
 type: entity
 subtype: org
 title: "Good AI"

@@ -1,4 +1,5 @@
 ---
+updated: 2026-06-03
 type: entity
 subtype: org
 title: "Kismet"
@@ -37,6 +38,6 @@ A dedicated NotebookLM notebook exists: **Kismet AI Readiness** (`notebooklm.goo
 
 ## Cross-references
 
-- [[Good AI]] — the consultancy arm Kevin operates alongside Kismet
+- [[Good-AI|Good AI]] — the consultancy arm Kevin operates alongside Kismet
 - [[strategic-deliverables]] — source doc where this context is spelled out
 - [[Team LLM Orchestration Roster]] — the LLM Council method applied to this engagement

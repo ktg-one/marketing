@@ -1,4 +1,5 @@
 ---
+status: developing
 type: entity
 title: "wp-mcp-ultimate"
 created: 2026-05-26

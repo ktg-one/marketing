@@ -1,4 +1,5 @@
 ---
+status: developing
 type: intel
 title: "Distilled Hybrid Models Guide"
 created: 2026-05-26
@@ -7,6 +8,9 @@ tags: [intel, models, local, distilled, hybrid]
 ---
 
 # Distilled Hybrid Models — Complete Guide
+
+> [!update] 2026-06-03 — Local hybrid lineup superseded for the content pipeline
+> The local Qwen / kimi / Ministral / Gemma distilled-hybrid lineup described in this guide is **superseded** as the default content engine. The [[ktg-one]] pipeline now uses hosted **Google/Gemini** (see [[Google-Gemini-Engine]]); local hybrids via Ollama / LM Studio are retained only as the offline `--local` fallback. This guide remains valid for the fallback path and for understanding the prior local-first design — but it no longer describes the default routing.
 
 ## What You Have
 

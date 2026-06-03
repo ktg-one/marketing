@@ -1,4 +1,6 @@
 ---
+status: developing
+updated: 2026-06-03
 type: entity
 subtype: product
 title: "Composio"
@@ -8,6 +10,9 @@ tags: [entity, product, publishing, mcp, social-media, automation]
 ---
 
 # Composio
+
+> [!update] 2026-06-03 — Connected to everything; key in `.env`
+> Composio is **connected to everything** for the [[ktg-one]] hub. Its API key lives in `.env` as **`COMPOSIO_API_KEY`** (gitignored — NOT committed). The active publish path is **Vercel deploy + LinkedIn + Reddit via Composio MCP**, behind a **non-bypassable per-post** [[Review-Gate]]. **X / Meta / Medium stay MANUAL** (platform APIs block auto-posting). Orchestration of this publish step uses the Claude Agent SDK — see [[Agent-SDK-Orchestration]] (and its rule: never `permission_mode="bypassPermissions"` on publish). This is invoked at the end of the [[Content-Production-Flow]] and bundled via the [[ktg-hub-Plugin]].
 
 MCP-based publishing connector. The primary automated social outbound and deployment tool for the [[ktg-one]] pipeline. Replaces n8n as the default automation route (n8n `list_workflows` auth is currently broken).
 
@@ -61,4 +66,7 @@ n8n is wired into the [[ktg-one]] workspace but is not the default route. The `l
 - [[Review-Gate]] — the gate before Composio fires
 - [[Publish-Kit-Pattern]] — the content prepared for Composio to distribute
 - [[Five-Layer-Architecture]] — Layer 5 (Publishing)
+- [[Content-Production-Flow]] — publish is the final step
+- [[Agent-SDK-Orchestration]] — SDK that fires Composio; never bypass permissions
+- [[ktg-hub-Plugin]] — bundles the publish skill behind the gate
 - [[project-state]] — current integration status

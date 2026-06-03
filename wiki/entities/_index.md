@@ -1,4 +1,5 @@
 ---
+status: developing
 type: index
 title: "Entities"
 created: 2026-05-16
@@ -14,7 +15,7 @@ People, organizations, products, repositories. One page per entity.
 
 - [[Anthropic]] — AI lab. Subject of [[the-mirage-of-ethical-ai]].
 - [[Kismet]] — sales operation; client engagement for AI readiness work. Partners: Shane, Josh.
-- [[Good AI]] — Kevin's AI consultancy brand (`goodai.au`). Applied arm bridging KTG methodology to clients.
+- [[Good-AI|Good AI]] — Kevin's AI consultancy brand (`goodai.au`). Applied arm bridging KTG methodology to clients.
 
 ## Products
 

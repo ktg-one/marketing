@@ -16,13 +16,13 @@ Complete publish-ready bundle for the Mirage post. Source post lives at `blog-20
 
 ## Package contents
 
-- [[post.md]] — canonical blog version (mirror of source, ready for WordPress/Medium import)
-- [[social-x-thread.md]] — X / Twitter thread (12 tweets)
-- [[social-linkedin.md]] — LinkedIn long-form post
-- [[social-reddit.md]] — Reddit post (r/ClaudeAI, r/LocalLLaMA, r/singularity targets)
-- [[social-medium.md]] — Medium import metadata + lede
-- [[social-ig-caption.md]] — Instagram caption + image carousel plan
-- [[publish-checklist.md]] — step-by-step actions to execute publish
+- [[post]] — canonical blog version (mirror of source, ready for WordPress/Medium import)
+- [[social-x-thread]] — X / Twitter thread (12 tweets)
+- [[social-linkedin]] — LinkedIn long-form post
+- [[social-reddit]] — Reddit post (r/ClaudeAI, r/LocalLLaMA, r/singularity targets)
+- [[social-medium]] — Medium import metadata + lede
+- [[social-ig-caption]] — Instagram caption + image carousel plan
+- [[publish-checklist]] — step-by-step actions to execute publish
 
 ## One-line summary
 

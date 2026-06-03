@@ -1,4 +1,7 @@
 ---
+status: developing
+created: 2026-06-03
+updated: 2026-06-03
 type: source
 title: "AGENTS.md — ktg-one (Authoritative Agent Onboarding Doc)"
 slug: agents-md-ktg-one

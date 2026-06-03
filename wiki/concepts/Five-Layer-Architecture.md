@@ -1,4 +1,6 @@
 ---
+status: developing
+updated: 2026-06-03
 type: concept
 title: "Five-Layer Architecture"
 aliases: ["5-layer stack", "ktg-one stack", "Layer 1-5"]

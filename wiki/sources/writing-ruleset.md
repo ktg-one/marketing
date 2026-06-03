@@ -1,4 +1,6 @@
 ---
+created: 2026-06-03
+updated: 2026-06-03
 type: source
 title: "Writing Ruleset — AI Prose Quality Doctrine"
 status: summarized
@@ -17,7 +19,7 @@ tags: [source, writing, methodology, ai-prose]
 
 This document is **distinct from** [[user-voice]] (the KTG brand voice / Myth-Hilarity doctrine). Where `user-voice` governs *what* to say and *what register* to use, the Writing Ruleset governs *how to write prose with discipline* — sentence structure, fact discipline, regularity checks, format matching. The two are complementary layers.
 
-See [[Writing Discipline Ruleset]] for the extracted reusable concept page.
+See [[Writing-Discipline-Ruleset|Writing Discipline Ruleset]] for the extracted reusable concept page.
 
 ## Core thesis
 
@@ -104,5 +106,5 @@ Hyphenate before the noun (`a well-known author`, `a long-term plan`). After the
 ## Cross-references
 
 - [[user-voice]] — the KTG brand voice layer (parallel, not competing)
-- [[Writing Discipline Ruleset]] — extracted concept page for this ruleset
+- [[Writing-Discipline-Ruleset|Writing Discipline Ruleset]] — extracted concept page for this ruleset
 - [[myth-hilarity-tech-anthropology]] — the macro doctrine this serves as technical complement to

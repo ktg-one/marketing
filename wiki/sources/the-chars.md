@@ -1,4 +1,6 @@
 ---
+created: 2026-06-03
+updated: 2026-06-03
 type: source
 title: "The Chars — Cast Introduction Prose"
 status: summarized

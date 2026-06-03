@@ -1,4 +1,5 @@
 ---
+status: developing
 type: source
 title: "Episode 2 Teaser + Episode 4 MCP Moment — Claude Scripts"
 source_file: "videography/-02 - Claude.txt"

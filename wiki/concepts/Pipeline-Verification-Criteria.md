@@ -1,4 +1,6 @@
 ---
+status: developing
+updated: 2026-06-03
 type: concept
 title: "Pipeline Verification Criteria"
 aliases: ["phase verification", "pipeline gates", "verification criteria", "quality gates"]

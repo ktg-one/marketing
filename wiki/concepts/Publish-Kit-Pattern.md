@@ -1,4 +1,6 @@
 ---
+status: developing
+updated: 2026-06-03
 type: concept
 title: "Publish Kit Pattern"
 aliases: ["Publish Kit", "8-file publish kit", "copy-paste kit"]

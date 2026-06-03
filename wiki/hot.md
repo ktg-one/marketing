@@ -1,46 +1,41 @@
 ---
 type: meta
 title: "Hot Cache"
-updated: 2026-05-27T03:00:00+08:00
+updated: 2026-06-03T20:00:00+08:00
 tags: [meta, hot-cache]
 ---
 
 # Recent Context
 
 ## Last Updated
-2026-05-27. **18-source wiki ingest completed across 4 parallel batches.** `.planning/codebase/` map produced (7 files, 1429 lines). `CLAUDE.md` rewritten to the 5-layer architecture. Karpathy LLM Wiki Pattern now load-bearing canon for this repo.
+2026-06-03. **Catch-up ingest after a neglected session** (the wiki was not touched for most of the work; this ingest closes the gap). Three big shifts captured: (1) the content pipeline engine migrated Ollama → **Google/Gemini**; (2) a self-contained **ktg-hub plugin** was built (dual Claude Code + Cowork packaging); (3) Kevin's **actual content flow** was corrected — Claude writes the blog, Gemini only does images + repurpose.
 
 ## Total wiki state
 | Domain | Count | Δ this session |
 |---|---|---|
-| Sources | 33 | +9 |
-| Entities | 16 | +6 (Composio, GSD-Methodology, ktg-one, SCCD-Model, LTX-Video, Hedra) |
-| Concepts | 30 | +7 (Five-Layer-Architecture, Review-Gate, Publish-Kit-Pattern, Skill-Progressive-Disclosure, Pipeline-Verification-Criteria, Best-Practices-Kernel, Level-3-Production-Pipeline) |
-| Cast pages | 11 | 4 updated (Grok, DeepSeek, Kimi, Perplexity — voice samples extended) |
-| Episodes | 5 scripted + 4 banked | +7 (series-arc-development, benchmarks-episode, prompt-god-scene, digital-backstage-bible, pilot-3in1, 4x-ideas-episode, teamllm-missing-stub) |
-| Intel snapshots | 4 | +1 (prompt-zone-status-2026-05-27) |
-| Codebase map | 7 docs / 1429 lines | NEW (.planning/codebase/) |
+| Sources | 33 | 0 |
+| Entities | 17 | +1 ([[ktg-hub-Plugin]]) |
+| Concepts | 33 | +3 ([[Google-Gemini-Engine]], [[Content-Production-Flow]], [[Agent-SDK-Orchestration]]) |
+| Intel | 6 | 2 updated ([[model-registry]], [[hybrid-models-guide]] → Gemini supersede) |
+| Playbooks | 3 | 1 updated ([[runtime-config]] → Claude Code) |
 
-## Key facts (2026-05-27 session)
-- **5-layer architecture canonized**: State (wiki) → Plugins (.claude/plugins/) → Orchestration (/hub) → Runtime (pipeline/) → Publishing (Composio + Review Gate)
-- **Karpathy LLM Wiki Pattern = canon**: agents that don't load the wiki = no user context = drift. Reading wiki INTO context is load-bearing, not optional. CLAUDE.md and AGENTS.md both encode this.
-- **Best-Practices Kernel identified as upstream**: AGENTS.md §5 is downstream restatement of `.claude/plugins/best-practices-main/best-practices.md`. Plugin is the canonical source for engineering + agent discipline.
-- **Mirage final = byte-identical** to `.raw/articles/the-mirage-of-ethical-ai-2026-05-16.md` (hash 94d25c…). Finalized-version-of relation captured.
-- **6 contradictions flagged** in ingest (all via callouts, never silently overwritten): Gemini voice/visual, Prompt-God framing, CLAUDE role-label, Claude palette, Gemini visual. **Locked cast canon stands** in every case.
-- **Two missing source files**: `videography/-11142025-deep-brainstorm.md` and `videography/-TeamLLM.md` (case-variant of `-TEAM-LLM.md`). Logged in manifest as `not_found`.
-
-## SCCD ↔ Wiki theorem (this session insight)
-`wiki/` = exterior SELF (anchors that survive `/clear`) · reading wiki = CONSCIOUSNESS pulling state into simulation · `/wiki-ingest` = CHOICE (which entities/concepts collapse into pages) · `wiki/log.md` (newest-on-top append-only) = DECIDE. The vault IS the SCCD substrate for the agent layer.
+## Key facts (2026-06-03 session)
+- **Engine = Google/Gemini** (`pipeline/ktg_pipeline/`): text `gemini-3.5-flash` (hero `gemini-3-pro-preview`), images Nano Banana `gemini-3.1-flash-image-preview`, driver `GEMINI_API_KEY`. House voice → 6 prose stages only. Parallel (ThreadPoolExecutor, 8 stages, ~20s). Verified live. Branch `feat/pipeline-google-voice-parallel`. Ollama = `--local` fallback only.
+- **Gemini is NOT the writer.** Actual flow: Research→NotebookLM → **write in Claude (in-session)** → images via banana → repurpose (Gemini) → review gate → Composio publish. Ads + videography = Gemini's domain, out of content-hub scope.
+- **ktg-hub plugin**: Claude Code plugin (`./plugins/ktg-hub`) + Cowork `.plugin` (`dist/ktg-hub.plugin`). Skills `hub`/`publish`; 3 agents; fail-closed `PreToolUse` gate hook (`hooks/review-gate.sh`, blocks path-traversal/unapproved slugs, exit 2); bundles nanobanana MCP + pipeline + voice.
+- **Publish path**: Composio (key `COMPOSIO_API_KEY` in `.env`, gitignored) → Vercel + LinkedIn + Reddit, behind non-bypassable per-post gate. X/Meta/Medium MANUAL.
+- **SDK split**: orchestration+publish = Claude Agent SDK (Python) + Composio MCP; Gemini = generation only. **NEVER `permission_mode="bypassPermissions"` on publish** — it defeats the gate.
 
 ## ⛔ Trust State: PROBATION
-Read `wiki/meta/agent-trust-state.md` FIRST. Kevin set status to `probation` 2026-05-27 after multiple sessions of babysitting overhead. Status field is authoritative; only Kevin can promote it. Behavior is being judged against documented earn-back criteria.
+Read `wiki/meta/agent-trust-state.md` FIRST. Status still `probation` (set 2026-05-27, Kevin-owned). This session: the wiki was neglected most of the way through — exactly the drift the Karpathy canon exists to prevent. Only Kevin promotes the status.
 
 ## Active Threads
-- **Publish Mirage**: still awaiting per-post green-light. Vercel → URL → Reddit + LinkedIn variants via Composio. The `the-mirage-of-ethical-ai-final.md` ingest confirms zero late edits since 2026-05-16.
-- **Kismet/Good AI strategy**: wikified; Training + Dashboard phase still pending.
-- **GSD Phase 1.0 Foundation**: the in-flight wiki ingest IS the work for this phase per `.planning/ROADMAP.md`. `.planning/phases/` directory not yet scaffolded; ROADMAP table format isn't parsed by `gsd-sdk` (returns 0 phases). Either reformat ROADMAP or scaffold phase dirs.
+- **Publish Mirage**: still awaiting per-post green-light (Vercel → URL → Reddit + LinkedIn via Composio).
+- **Pipeline E2E verify**: Gemini engine returns "PIPELINE OK" but full /hub Phase 2.0–6.0 + Composio auto-post path still untested end-to-end.
+- **ktg-hub plugin**: built + gate hook verified; needs a real publish dry-run through the gate.
 
 ## Carry-forward
-- Cross-vault drift risk: parent `C:/Users/kevin/knowledge2026/` and Desktop/projects2026 Next.js sites are separate repos.
-- WP Basic auth in `README.md.txt` (NOT `.env`) — security flag.
-- Plugin registration: 13 of 79 skills registered per `wiki/modules/index.md`.
+- `COMPOSIO_API_KEY` + `GEMINI_API_KEY` live in `.env` (gitignored) — don't commit; WP Basic auth still in `README.md.txt` (security flag).
+- Gemini owns ads + videography; do not pull those into the content hub.
+- Vercel AI SDK (TS) only relevant if a streaming web UI is built later.
+- Branch `feat/pipeline-google-voice-parallel` pushed; repo reorg (`templates/`) committed `387b109`.

@@ -1,4 +1,5 @@
 ---
+status: developing
 type: source
 title: "The Prompt Zone — 3-in-1 Pilot Script"
 source_file: "videography/-3xin1.md"

@@ -1,4 +1,5 @@
 ---
+updated: 2026-06-03
 type: checklist
 title: "Mirage — Publish Checklist"
 status: ready

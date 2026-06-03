@@ -1,4 +1,5 @@
 ---
+status: developing
 type: source
 title: "LEGIO-10: PGScan + ARQ — Post-Execution Gap Scan & Quality Gates"
 source_file: "videography/Episodes--MOE - EAST VS WEST.md"

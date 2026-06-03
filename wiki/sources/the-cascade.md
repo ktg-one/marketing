@@ -1,4 +1,6 @@
 ---
+created: 2026-06-03
+updated: 2026-06-03
 type: source
 title: "The Cascade — STRAWHATS-DIRECTIVE v28"
 status: summarized

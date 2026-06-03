@@ -1,4 +1,6 @@
 ---
+status: developing
+updated: 2026-06-03
 type: concept
 title: "Skill Progressive Disclosure"
 aliases: ["progressive disclosure", "on-demand skill loading", "skill loading discipline"]

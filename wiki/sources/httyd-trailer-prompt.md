@@ -1,4 +1,5 @@
 ---
+status: developing
 type: source
 title: "The Prompt Zone — HTTYD Trailer Production Prompt"
 source_file: "videography/Episodes--HTTYD-TRAILER-PROMPT.md"

@@ -1,4 +1,5 @@
 ---
+status: developing
 type: concept
 title: "MCP Redemption Pattern"
 created: 2026-05-26

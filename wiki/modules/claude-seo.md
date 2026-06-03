@@ -1,4 +1,5 @@
 ---
+status: developing
 type: entity
 title: "claude-seo plugin"
 created: 2026-05-26

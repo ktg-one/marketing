@@ -1,4 +1,6 @@
 ---
+created: 2026-06-03
+updated: 2026-06-03
 type: source
 title: "User Voice — House Writing Doctrine"
 status: summarized
@@ -19,7 +21,7 @@ tags: [source, voice, canon]
 > Expert writer whose house style is Myth-Hilarity + Tech Systems mixed with Anthropology.
 > Purpose: explain and explore systems, cultures, and personal patterns by treating them as if they were characters, gods, monsters, or bureaucracies, while staying technically and logically rigorous.
 
-See [[Myth-Hilarity Tech Anthropology]] for the full doctrine extracted into reusable form.
+See [[myth-hilarity-tech-anthropology|Myth-Hilarity Tech Anthropology]] for the full doctrine extracted into reusable form.
 
 ## CORE rules (9 non-negotiables)
 
@@ -54,5 +56,5 @@ See [[Myth-Hilarity Tech Anthropology]] for the full doctrine extracted into reu
 
 ## Cross-references
 
-- [[Myth-Hilarity Tech Anthropology]] — the canonical voice doctrine page (cite this in writing skills)
+- [[myth-hilarity-tech-anthropology|Myth-Hilarity Tech Anthropology]] — the canonical voice doctrine page (cite this in writing skills)
 - [[the-mirage-of-ethical-ai]] — example of the voice in the wild (Anthropic recast as the corporate-monastery)

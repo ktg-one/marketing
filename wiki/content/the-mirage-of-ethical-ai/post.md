@@ -1,4 +1,5 @@
 ---
+updated: 2026-06-03
 type: post
 title: "The Mirage of Ethical AI"
 slug: the-mirage-of-ethical-ai

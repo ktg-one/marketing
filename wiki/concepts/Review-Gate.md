@@ -1,4 +1,6 @@
 ---
+status: developing
+updated: 2026-06-03
 type: concept
 title: "Review Gate"
 aliases: ["Human Gate", "Publish Gate", "per-post approval"]

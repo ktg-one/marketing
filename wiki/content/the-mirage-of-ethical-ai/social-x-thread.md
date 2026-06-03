@@ -1,4 +1,5 @@
 ---
+updated: 2026-06-03
 type: social-variant
 platform: x
 title: "Mirage — X Thread (12 tweets)"

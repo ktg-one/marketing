@@ -1,4 +1,5 @@
 ---
+status: developing
 type: index
 title: "Playbooks"
 created: 2026-05-16

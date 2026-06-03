@@ -1,4 +1,7 @@
 ---
+status: developing
+created: 2026-06-03
+updated: 2026-06-03
 type: source
 title: "PROJECT_STATE.md — KTG Content Pipeline Status (2026-05-26)"
 slug: project-state

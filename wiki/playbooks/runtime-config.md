@@ -1,4 +1,5 @@
 ---
+status: developing
 type: playbook
 title: "Runtime Configuration"
 created: 2026-05-26
@@ -8,8 +9,11 @@ tags: [playbook, runtime, mcp, configuration]
 
 # Runtime Configuration
 
-## Active Runtime: OpenCode
-All plugins loaded as skills in OpenCode. wp-mcp-ultimate configured to Claude Code sidecar.
+> [!contradiction] 2026-06-03 — Runtime is Claude Code, not OpenCode
+> The "Active Runtime: OpenCode" line below is **superseded**. The runtime is **Claude Code**, with `/hub` orchestration (Layer 3 of the [[Five-Layer-Architecture]]) and the [[ktg-hub-Plugin]] packaged as both a Claude Code plugin and a Claude Cowork `.plugin`. Orchestration + publish use the Claude Agent SDK ([[Agent-SDK-Orchestration]]). Treat references to "OpenCode" below as historical. The plugin → runtime mapping should be read as Claude Code, not OpenCode.
+
+## Active Runtime: ~~OpenCode~~ Claude Code
+~~All plugins loaded as skills in OpenCode.~~ Plugins load as skills/agents in **Claude Code** via `/hub` orchestration. wp-mcp-ultimate configured to Claude Code sidecar.
 
 ## Plugin → Runtime Mapping
 

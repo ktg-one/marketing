@@ -1,4 +1,5 @@
 ---
+updated: 2026-06-03
 type: source
 title: "Strategic Deliverables — Good AI to Kismet"
 status: summarized
@@ -11,7 +12,7 @@ tags: [source, strategy, kismet, good-ai, meta]
 # Strategic Deliverables — Good AI to Kismet
 
 > [!key-insight] One-line
-> Kevin's working context doc bridging the [[Good AI]] consultancy and [[Kismet]] sales operation — identifies AI readiness as the research priority and the [[LLM Council]] as the execution method.
+> Kevin's working context doc bridging the [[Good-AI|Good AI]] consultancy and [[Kismet]] sales operation — identifies AI readiness as the research priority and the [[Team LLM Orchestration Roster|LLM Council]] as the execution method.
 
 ## Context snapshot
 
@@ -74,7 +75,7 @@ Active (status: ACTIVE in frontmatter). Working document, not a polished artifac
 ## Cross-references
 
 - [[Kismet]] — the sales operation at the center of this strategy
-- [[Good AI]] — the consultancy / AI readiness arm
+- [[Good-AI|Good AI]] — the consultancy / AI readiness arm
 - [[Team LLM Orchestration Roster]] — LLM Council matches this exactly
 - [[AI Anthropology Framing]] — the lens proposed for the research paper
 - [[Cognitive Architecture (Prompt-Only)]] — "KTG-DIRECTIVE evolution" references this lineage

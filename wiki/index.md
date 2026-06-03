@@ -2,7 +2,7 @@
 type: meta
 title: "Wiki Index"
 created: 2026-05-16
-updated: 2026-05-27
+updated: 2026-06-03
 tags: [meta, index]
 ---
 
@@ -43,8 +43,8 @@ Catalog of all wiki pages. Update after every ingest or new note.
 ## Entities
 
 - [[Anthropic]] · [[Claude Code]] · [[KAIROS]] · [[autoDream]] · [[Project Glasswing]] · [[Undercover Mode]] · [[Capybara v8]] · [[STRAWHATS-DIRECTIVE]]
-- [[Kismet]] · [[Good AI]]
-- Project & infra: [[ktg-one]] · [[Composio]] · [[GSD-Methodology]] · [[SCCD-Model]]
+- [[Kismet]] · [[Good-AI|Good AI]]
+- Project & infra: [[ktg-one]] · [[Composio]] · [[ktg-hub-Plugin]] · [[GSD-Methodology]] · [[SCCD-Model]]
 - Production tools: [[LTX-Video]] · [[Hedra]]
 
 ## Voice & Cast
@@ -55,7 +55,7 @@ Catalog of all wiki pages. Update after every ingest or new note.
 ## Concepts
 
 - AI lab behaviour: [[Silent Compute Cuts]] · [[Ethics as Branding]] · [[Always-On AI Daemons]] · [[Source Map Leak Pattern]]
-- Writing methodology: [[Writing Discipline Ruleset]]
+- Writing methodology: [[Writing-Discipline-Ruleset|Writing Discipline Ruleset]]
 - Production pillars: [[Two-World Structure]] · [[Bugs as Personality Traits]] · [[Chibi Copyright Evasion]] · [[Geopolitical AI Satire]] · [[Found Family Doctrine]] · [[HTTYD Narration]]
 - Orchestration: [[Team LLM Orchestration Roster]]
 - STRAWHATS architecture: [[Cognitive Architecture (Prompt-Only)]] · [[RKQDE Assessment Framework]] · [[Success Criteria Lock]] · [[3-Iteration Protocol]]
@@ -64,6 +64,7 @@ Catalog of all wiki pages. Update after every ingest or new note.
 - BotB mechanics: [[Backwards Builds]] · [[Shakespearean Sabotage]] · [[AI Anthropology Framing]]
 - Pipeline architecture (ktg-one): [[Five-Layer-Architecture]] · [[Review-Gate]] · [[Publish-Kit-Pattern]] · [[Skill-Progressive-Disclosure]] · [[Pipeline-Verification-Criteria]] · [[Best-Practices-Kernel]]
 - Videography production: [[Level-3-Production-Pipeline]]
+- Engine & flow (2026-06-03): [[Google-Gemini-Engine]] · [[Content-Production-Flow]] · [[Agent-SDK-Orchestration]]
 
 ## Episodes
 

@@ -1,4 +1,6 @@
 ---
+created: 2026-06-03
+updated: 2026-06-03
 type: source
 title: "Team LLM Production Bible Extract"
 status: summarized
@@ -35,7 +37,7 @@ Main characters:
 - [[Grok]] — the Chaos Agent
 - [[Outliers]] — Llama, 7B Open Source, Mistral
 - [[User-Narrator]] (YOU / Hiccup) — the human at the desk
-- [[Prompt God]] — antagonist
+- [[Prompt-God|Prompt God]] — antagonist
 
 ## Core creative pillars (6)
 

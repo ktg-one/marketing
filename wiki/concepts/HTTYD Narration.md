@@ -26,7 +26,7 @@ The narrator voice rule for [[team-llm-production-bible|Team LLM]]. Modeled on *
 
 ## Cross-discipline overlap
 
-The HTTYD narration voice and the written [[Myth-Hilarity Tech Anthropology]] voice rhyme — both treat systems as characters, anchor in concrete detail, and reveal tradeoffs through observation. Use one to inform the other.
+The HTTYD narration voice and the written [[myth-hilarity-tech-anthropology|Myth-Hilarity Tech Anthropology]] voice rhyme — both treat systems as characters, anchor in concrete detail, and reveal tradeoffs through observation. Use one to inform the other.
 
 ## Sources
 

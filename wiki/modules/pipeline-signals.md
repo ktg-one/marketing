@@ -1,4 +1,5 @@
 ---
+status: developing
 type: concept
 title: "Plugin Pipeline Signals"
 created: 2026-05-26

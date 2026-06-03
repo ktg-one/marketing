@@ -1,4 +1,5 @@
 ---
+updated: 2026-06-03
 type: social-variant
 platform: instagram
 title: "Mirage — IG Caption + Carousel Plan"

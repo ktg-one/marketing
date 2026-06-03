@@ -1,4 +1,7 @@
 ---
+status: developing
+created: 2026-06-03
+updated: 2026-06-03
 type: intel
 title: "Prompt Zone Production Status"
 snapshot_date: 2026-05-27
