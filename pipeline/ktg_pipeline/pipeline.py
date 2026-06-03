@@ -112,10 +112,10 @@ class ContentPipeline:
         print(f"Model: {self.config.llm_config.get('model', 'unknown')}")
         print()
         
-        # Build the list of stages to run. Each entry is a (name, fn) pair;
-        # `name` keys the result back into `results`. The 5 repurpose stages are
-        # gated by their per-platform `enabled` flag (default True), matching the
-        # previous sequential behaviour exactly.
+        # Build the list of stages to run. `repurpose_stages` holds (name, fn)
+        # pairs; the 5 repurpose stages are gated by their per-platform `enabled`
+        # flag (default True), matching the previous sequential behaviour exactly.
+        # The final `stages` list holds (kind, name, fn) triples (see below).
         platforms = self.config.platforms
 
         repurpose_stages = [
@@ -140,7 +140,7 @@ class ContentPipeline:
         # distinct file, returns its own value, shares no mutable state), so run
         # them concurrently. Work is I/O-bound HTTP via requests -> threads.
         print(f"Running {len(stages)} stages concurrently...")
-        with ThreadPoolExecutor(max_workers=8) as executor:
+        with ThreadPoolExecutor(max_workers=max(1, len(stages))) as executor:
             future_map = {
                 executor.submit(fn, post, out_path): (kind, name)
                 for kind, name, fn in stages
@@ -150,13 +150,12 @@ class ContentPipeline:
                 try:
                     value = future.result()
                 except Exception as e:
-                    # Per-stage error isolation: one failing stage must not abort
-                    # the rest. Record it and move on (None / omit from platforms).
-                    print(f"[error] {name}: {e}")
-                    if kind == 'top':
-                        # leave the pre-seeded default (None for seo/ads, {} for images)
-                        pass
-                    # platform stages: omit on failure (key simply not added)
+                    # Per-stage error isolation: one failing stage must not abort the
+                    # rest. seo/ads/images keep their pre-seeded default (None/None/{});
+                    # platform stages are simply omitted from results['platforms'].
+                    # Include the exception type so a programming bug (KeyError, etc.)
+                    # is distinguishable from a legit LLM/HTTP failure.
+                    print(f"[error] {name}: {type(e).__name__}: {e}")
                     continue
                 if kind == 'platform':
                     results['platforms'][name] = value
