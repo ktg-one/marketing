@@ -2,6 +2,7 @@
 
 import json
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Dict, Any, Optional
 from datetime import datetime
@@ -111,41 +112,58 @@ class ContentPipeline:
         print(f"Model: {self.config.llm_config.get('model', 'unknown')}")
         print()
         
-        # Generate platform variants
+        # Build the list of stages to run. Each entry is a (name, fn) pair;
+        # `name` keys the result back into `results`. The 5 repurpose stages are
+        # gated by their per-platform `enabled` flag (default True), matching the
+        # previous sequential behaviour exactly.
         platforms = self.config.platforms
-        
-        if platforms.get('medium', {}).get('enabled', True):
-            print("[1/8] Generating Medium variant...")
-            results['platforms']['medium'] = self._repurpose_medium(post, out_path)
-        
-        if platforms.get('reddit', {}).get('enabled', True):
-            print("[2/8] Generating Reddit variant...")
-            results['platforms']['reddit'] = self._repurpose_reddit(post, out_path)
-        
-        if platforms.get('x', {}).get('enabled', True):
-            print("[3/8] Generating X thread...")
-            results['platforms']['x'] = self._repurpose_x(post, out_path)
-        
-        if platforms.get('linkedin', {}).get('enabled', True):
-            print("[4/8] Generating LinkedIn variant...")
-            results['platforms']['linkedin'] = self._repurpose_linkedin(post, out_path)
-        
-        if platforms.get('meta', {}).get('enabled', True):
-            print("[5/8] Generating Meta variant...")
-            results['platforms']['meta'] = self._repurpose_meta(post, out_path)
-        
-        # Generate SEO package
-        print("[6/8] Generating SEO package...")
-        results['seo'] = self._generate_seo(post, out_path)
-        
-        # Generate ads package
-        print("[7/8] Generating ads package...")
-        results['ads'] = self._generate_ads(post, out_path)
-        
-        # Generate image prompts
-        print("[8/8] Generating image prompts...")
-        results['images'] = self._generate_image_prompts(post, out_path)
-        
+
+        repurpose_stages = [
+            ('medium', self._repurpose_medium),
+            ('reddit', self._repurpose_reddit),
+            ('x', self._repurpose_x),
+            ('linkedin', self._repurpose_linkedin),
+            ('meta', self._repurpose_meta),
+        ]
+
+        # name -> (callable, result-assignment key). Platform stages land in
+        # results['platforms'][name]; seo/ads/images are top-level keys.
+        stages = []
+        for name, fn in repurpose_stages:
+            if platforms.get(name, {}).get('enabled', True):
+                stages.append(('platform', name, fn))
+        stages.append(('top', 'seo', self._generate_seo))
+        stages.append(('top', 'ads', self._generate_ads))
+        stages.append(('top', 'images', self._generate_image_prompts))
+
+        # Stages are independent (each takes (post, out_path), writes its own
+        # distinct file, returns its own value, shares no mutable state), so run
+        # them concurrently. Work is I/O-bound HTTP via requests -> threads.
+        print(f"Running {len(stages)} stages concurrently...")
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            future_map = {
+                executor.submit(fn, post, out_path): (kind, name)
+                for kind, name, fn in stages
+            }
+            for future in as_completed(future_map):
+                kind, name = future_map[future]
+                try:
+                    value = future.result()
+                except Exception as e:
+                    # Per-stage error isolation: one failing stage must not abort
+                    # the rest. Record it and move on (None / omit from platforms).
+                    print(f"[error] {name}: {e}")
+                    if kind == 'top':
+                        # leave the pre-seeded default (None for seo/ads, {} for images)
+                        pass
+                    # platform stages: omit on failure (key simply not added)
+                    continue
+                if kind == 'platform':
+                    results['platforms'][name] = value
+                else:
+                    results[name] = value
+                print(f"[done] {name}")
+
         # Save manifest
         manifest_path = out_path / 'manifest.json'
         with open(manifest_path, 'w') as f:
