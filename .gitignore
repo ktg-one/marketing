@@ -11,3 +11,14 @@ __pycache__/
 .env
 .env.local
 .env.*
+
+# Build / runtime artifacts
+dist/
+pipeline/logs/
+.claude/settings.local.json
+# Per-run pipeline output dirs (keep the tracked sample dirs: social/seo/ads/images)
+pipeline/output/*/
+!pipeline/output/social/
+!pipeline/output/seo/
+!pipeline/output/ads/
+!pipeline/output/images/
