@@ -1,3 +1,21 @@
+# ⛔ STOP — THIS IS A STALE FORK. READ BEFORE ANYTHING.
+
+This repo (`ktg-one/marketing`) is **behind** the real project. The current repo is
+**`github.com/ktg-one/content-hub`** — it has `Runtime.md`, the GSD plan (`.multica/plan/`),
+the `claude-socials` plugin, finished publish-kits, and the current `wiki/hot.md`. None of
+that is here.
+
+**Do this first:**
+```
+multica repo checkout https://github.com/ktg-one/content-hub
+```
+Then read `content-hub/Runtime.md` + `content-hub/wiki/hot.md` (the SESSION HANDOFF block).
+The plan is on Multica issues **GOO-34** (epic) + **GOO-35..39** — already written. **Do NOT
+re-plan, scaffold `.planning/phases/`, or write new PLAN.md files here.** That re-planning
+loop has burned 4+ sessions. The work is a blog-post repurpose, not an engineering epic.
+
+---
+
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
